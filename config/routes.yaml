@@ -1,6 +1,6 @@
 # api/config/routes.yaml
 authentication_token:
-  path: /login_check
+  path: /api/login_check
   methods: ['POST']
 swagger_ui:
   path: /docs
