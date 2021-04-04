@@ -18,6 +18,9 @@
         {% endblock %}
     </head>
     <body>
+        {% block menu_top %}
+            {% include 'menu/menu_top.html.twig' %}
+        {% endblock %}
         {% block body %}{% endblock %}
     </body>
 </html>
