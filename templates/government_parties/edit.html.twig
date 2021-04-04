@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit GovernmentParties{% endblock %}
+
+{% block body %}
+    <h1>Edit GovernmentParties</h1>
+
+    {{ include('government_parties/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('government_parties_index') }}">back to list</a>
+
+    {{ include('government_parties/_delete_form.html.twig') }}
+{% endblock %}

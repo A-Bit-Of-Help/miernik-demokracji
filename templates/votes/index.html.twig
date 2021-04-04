@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votes index{% endblock %}
+
+{% block body %}
+    <h1>Votes index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Hour</th>
+                <th>Title</th>
+                <th>AgendaItem</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vote in votes %}
+            <tr>
+                <td>{{ vote.id }}</td>
+                <td>{{ vote.hour ? vote.hour|date('H:i:s') : '' }}</td>
+                <td>{{ vote.title }}</td>
+                <td>{{ vote.agendaItem }}</td>
+                <td>
+                    <a href="{{ path('votes_show', {'id': vote.id}) }}">show</a>
+                    <a href="{{ path('votes_edit', {'id': vote.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('votes_new') }}">Create new</a>
+{% endblock %}

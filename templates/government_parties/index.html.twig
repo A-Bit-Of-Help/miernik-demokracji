@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GovernmentParties index{% endblock %}
+
+{% block body %}
+    <h1>GovernmentParties index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Abbreviation</th>
+                <th>Logo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for government_party in government_parties %}
+            <tr>
+                <td>{{ government_party.id }}</td>
+                <td>{{ government_party.name }}</td>
+                <td>{{ government_party.abbreviation }}</td>
+                <td>{{ government_party.logo }}</td>
+                <td>
+                    <a href="{{ path('government_parties_show', {'id': government_party.id}) }}">show</a>
+                    <a href="{{ path('government_parties_edit', {'id': government_party.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('government_parties_new') }}">Create new</a>
+{% endblock %}

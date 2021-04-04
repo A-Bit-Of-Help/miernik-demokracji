@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Deputies{% endblock %}
+
+{% block body %}
+    <h1>Deputies</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ deputy.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ deputy.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Secondname</th>
+                <td>{{ deputy.secondname }}</td>
+            </tr>
+            <tr>
+                <th>Surname</th>
+                <td>{{ deputy.surname }}</td>
+            </tr>
+            <tr>
+                <th>Link</th>
+                <td>{{ deputy.link }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ deputy.photo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('deputies_index') }}">back to list</a>
+
+    <a href="{{ path('deputies_edit', {'id': deputy.id}) }}">edit</a>
+
+    {{ include('deputies/_delete_form.html.twig') }}
+{% endblock %}

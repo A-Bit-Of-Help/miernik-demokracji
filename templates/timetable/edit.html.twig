@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Timetable{% endblock %}
+
+{% block body %}
+    <h1>Edit Timetable</h1>
+
+    {{ include('timetable/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('timetable_index') }}">back to list</a>
+
+    {{ include('timetable/_delete_form.html.twig') }}
+{% endblock %}

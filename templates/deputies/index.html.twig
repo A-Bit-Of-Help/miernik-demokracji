@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Deputies index{% endblock %}
+
+{% block body %}
+    <h1>Deputies index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Secondname</th>
+                <th>Surname</th>
+                <th>Link</th>
+                <th>Photo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for deputy in deputies %}
+            <tr>
+                <td>{{ deputy.id }}</td>
+                <td>{{ deputy.firstname }}</td>
+                <td>{{ deputy.secondname }}</td>
+                <td>{{ deputy.surname }}</td>
+                <td>{{ deputy.link }}</td>
+                <td>{{ deputy.photo }}</td>
+                <td>
+                    <a href="{{ path('deputies_show', {'id': deputy.id}) }}">show</a>
+                    <a href="{{ path('deputies_edit', {'id': deputy.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('deputies_new') }}">Create new</a>
+{% endblock %}
