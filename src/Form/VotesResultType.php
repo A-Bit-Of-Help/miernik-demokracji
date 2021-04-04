@@ -31,7 +31,7 @@ class VotesResultType extends AbstractType
             ->add('deputies', EntityType::class, [
                 'class' => Deputies::class,
                 'choice_label' => function(Deputies $deputies) {
-                    return $deputies->getFirstname() . ' ' . $deputies->getSecondname() . ' ' . $deputies->getSurname();
+                    return $deputies->getFirstname() . ' ' . $deputies->getMiddlename() . ' ' . $deputies->getSurname();
                 },
                 'attr' => [
                     'class' => 'form-select'

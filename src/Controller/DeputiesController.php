@@ -5,16 +5,65 @@ namespace App\Controller;
 use App\Entity\Deputies;
 use App\Form\DeputiesType;
 use App\Repository\DeputiesRepository;
+use App\Repository\GovernmentPartiesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use voku\helper\HtmlDomParser;
 
 /**
  * @Route("/deputies")
  */
 class DeputiesController extends AbstractController
 {
+    public function parserDeputies(GovernmentPartiesRepository $governmentPartiesRepository,
+                                   DeputiesRepository $deputiesRepository
+    )
+    {
+        $em = $this->getDoctrine()->getManager();
+        $html = HtmlDomParser::file_get_html('http://www.sejm.gov.pl/Sejm9.nsf/poslowie.xsp?type=A');
+        $elements = $html->find('.deputies li');
+        foreach ($elements as $e) {
+            $name = explode(' ', html_entity_decode($e->findOne('.deputyName')->innerText()));
+            $num = count($name);
+            $firstname = $middlename = $surname = null;
+
+            if ($num == 2) {
+                list($firstname, $surname) = $name;
+            } else {
+                list($firstname, $middlename, $surname) = $name;
+            }
+
+            $abbreviation = str_replace(
+                '</strong>',
+                '',
+                str_replace(
+                    '<strong>',
+                    '',
+                    $e->findOne('strong')->innerHtml()
+                )
+            );
+            foreach($e->find('a') as $a){
+                $link = 'http://www.sejm.gov.pl' . $a->href;
+            };
+
+            $governmentParties = $governmentPartiesRepository->findOneBy(['abbreviation' => $abbreviation]);
+
+            $deputies = new Deputies();
+            $deputies->setFirstname($firstname);
+            $deputies->setMiddlename($middlename);
+            $deputies->setSurname($surname);
+            $deputies->setLink($link);
+            $deputies->setGovernmentParties($governmentParties);
+            if($deputiesRepository->findOneBy(['firstname' => $firstname, 'middlename' => $middlename, 'surname' => $surname]) == null){
+                $em->persist($deputies);
+                $em->flush();
+            }
+
+        };
+    }
+
     /**
      * @Route("/", name="deputies_index", methods={"GET"})
      */

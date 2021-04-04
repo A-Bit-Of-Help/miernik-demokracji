@@ -20,7 +20,7 @@ class DeputiesType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('secondname', TextType::class, [
+            ->add('middlename', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
                 ]

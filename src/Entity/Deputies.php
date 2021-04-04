@@ -29,7 +29,7 @@ class Deputies
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
-    private $secondname;
+    private $middlename;
 
     /**
      * @ORM\Column(type="string", length=80)
@@ -78,14 +78,14 @@ class Deputies
         return $this;
     }
 
-    public function getSecondname(): ?string
+    public function getMiddlename(): ?string
     {
-        return $this->secondname;
+        return $this->middlename;
     }
 
-    public function setSecondname(?string $secondname): self
+    public function setMiddlename(?string $middlename): self
     {
-        $this->secondname = $secondname;
+        $this->middlename = $middlename;
 
         return $this;
     }
