@@ -153,6 +153,9 @@
     "nikic/php-parser": {
         "version": "v4.10.4"
     },
+    "php-curl-class/php-curl-class": {
+        "version": "9.1.0"
+    },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
     },
@@ -542,6 +545,9 @@
     },
     "twig/twig": {
         "version": "v3.3.0"
+    },
+    "voku/simple_html_dom": {
+        "version": "4.7.29"
     },
     "webmozart/assert": {
         "version": "1.10.0"
