@@ -21,7 +21,7 @@
                 <td>{{ government_party.id }}</td>
                 <td>{{ government_party.name }}</td>
                 <td>{{ government_party.abbreviation }}</td>
-                <td>{{ government_party.logo }}</td>
+                <td><img src="{{ government_party.logo }}" height="53px"/></td>
                 <td>
                     <a href="{{ path('government_parties_show', {'id': government_party.id}) }}">show</a>
                     <a href="{{ path('government_parties_edit', {'id': government_party.id}) }}">edit</a>
