@@ -19,7 +19,7 @@
             <td>{{ deputy.middlename }}</td>
             <td>{{ deputy.surname }}</td>
             <td><a href="{{ deputy.link }}">gov site</a></td>
-            <td>{{ deputy.photo }}</td>
+            <td><img src="{{ deputy.photo }}" /></td>
             <td>
                 <a href="{{ path('deputies_show', {'id': deputy.id}) }}">show</a>
                 <a href="{{ path('deputies_edit', {'id': deputy.id}) }}">edit</a>
