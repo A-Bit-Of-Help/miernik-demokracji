@@ -24,7 +24,7 @@
                 <td>{{ timetable.number }}</td>
                 <td>{{ timetable.date ? timetable.date|date('Y-m-d') : '' }}</td>
                 <td>{{ timetable.startTime ? timetable.startTime|date('H:i:s') : '' }}</td>
-                <td>{{ timetable.link }}</td>
+                <td><a href={{ timetable.link }}>{{ timetable.title }}</a></td>
                 <td>{{ timetable.term }}</td>
                 <td>
                     <a href="{{ path('timetable_show', {'id': timetable.id}) }}">show</a>

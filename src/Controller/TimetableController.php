@@ -50,7 +50,7 @@ class TimetableController extends AbstractController
     public function index(TimetableRepository $timetableRepository): Response
     {
         return $this->render('timetable/index.html.twig', [
-            'timetables' => $timetableRepository->findAll(),
+            'timetables' => $timetableRepository->findBy([], ['number' => 'DESC']),
         ]);
     }
 
