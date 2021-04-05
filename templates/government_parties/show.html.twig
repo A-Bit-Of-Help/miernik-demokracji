@@ -26,6 +26,10 @@
         </tbody>
     </table>
 
+    <h2>DeputiesList</h2>
+
+    {% include 'deputies/list.html.twig' %}
+
     <a href="{{ path('government_parties_index') }}">back to list</a>
 
     <a href="{{ path('government_parties_edit', {'id': government_party.id}) }}">edit</a>

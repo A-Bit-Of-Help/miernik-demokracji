@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\GovernmentParties;
 use App\Form\GovernmentPartiesType;
+use App\Repository\DeputiesRepository;
 use App\Repository\GovernmentPartiesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -93,10 +94,12 @@ class GovernmentPartiesController extends AbstractController
      * @param GovernmentParties $governmentParty
      * @return Response
      */
-    public function show(GovernmentParties $governmentParty): Response
+    public function show(GovernmentParties $governmentParty, DeputiesRepository $deputiesRepository): Response
     {
+        $deputies = $deputiesRepository->findBy(['governmentParties' => $governmentParty->getId()]);
         return $this->render('government_parties/show.html.twig', [
             'government_party' => $governmentParty,
+            "deputies" => $deputies
         ]);
     }
 
