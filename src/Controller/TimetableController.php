@@ -9,12 +9,41 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use voku\helper\HtmlDomParser;
 
 /**
  * @Route("/timetable")
  */
 class TimetableController extends AbstractController
 {
+    public function parserTimetable(TimetableRepository $timetableRepository)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $html = HtmlDomParser::file_get_html('http://sejm.gov.pl/Sejm9.nsf/terminarz.xsp');
+        $elements = $html->find('.sub-title a');
+        foreach ($elements as $e){
+            if(substr($e->href, 0, 4) != 'http') {
+                $html2 = HtmlDomParser::file_get_html('http://sejm.gov.pl/Sejm9.nsf/terminarz.xsp' . $e->href);
+                $elements2 = $html2->find('table td a');
+                foreach ($elements2 as $e2){
+                    $number = substr($e2->text(), 0, strpos($e2->text(), '.'));
+                    $title = $e2->text();
+                    $link = 'http://www.sejm.gov.pl' . $e2->href;
+                    $term = intval(str_replace('/Sejm', '', substr($e2->href, 0, strpos($e2->href, '.nsf'))));
+                    $timetable = new Timetable();
+                    $timetable->setTitle($title);
+                    $timetable->setNumber($number);
+                    $timetable->setLink($link);
+                    $timetable->setTerm($term);
+                    if($timetableRepository->findOneBy(['number' => $number]) == null){
+                        $em->persist($timetable);
+                        $em->flush();
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * @Route("/", name="timetable_index", methods={"GET"})
      */
