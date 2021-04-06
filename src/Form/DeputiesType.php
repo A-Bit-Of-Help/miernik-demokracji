@@ -30,13 +30,21 @@ class DeputiesType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('link')
-            ->add('photo')
+            ->add('link', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('photo', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
             ->add('governmentParties', EntityType::class, [
                 'class' => GovernmentParties::class,
                 'choice_label' => 'name',
                 'attr' => [
-                    'class' => 'form-select'
+                    'class' => 'form-control'
                 ]
             ])
         ;

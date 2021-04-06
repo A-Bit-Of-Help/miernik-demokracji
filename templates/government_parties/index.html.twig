@@ -6,7 +6,7 @@
     <h1>GovernmentParties index</h1>
 
     <table class="table">
-        <thead>
+        <thead class="thead-light">
             <tr>
                 <th>Id</th>
                 <th>Name</th>
@@ -23,8 +23,8 @@
                 <td>{{ government_party.abbreviation }}</td>
                 <td><img src="{{ government_party.logo }}" height="53px"/></td>
                 <td>
-                    <a href="{{ path('government_parties_show', {'id': government_party.id}) }}">show</a>
-                    <a href="{{ path('government_parties_edit', {'id': government_party.id}) }}">edit</a>
+                    <a href="{{ path('government_parties_show', {'id': government_party.id}) }}"><span class="badge badge-info">show</span></a>
+                    <a href="{{ path('government_parties_edit', {'id': government_party.id}) }}"><span class="badge badge-info">edit</span></a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('government_parties_new') }}">Create new</a>
+    <a class="btn btn-success" href="{{ path('government_parties_new') }}">Create new</a>
 {% endblock %}

@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <th>Link</th>
-                <td><a href="{{ deputy.link }}">gov site</a></td>
+                <td><a href="{{ deputy.link }}"><span class="badge badge-info">gov site</span></a></td>
             </tr>
             <tr>
                 <th>Photo</th>
@@ -34,9 +34,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('deputies_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('deputies_index') }}">back to list</a>
 
-    <a href="{{ path('deputies_edit', {'id': deputy.id}) }}">edit</a>
+    <a class="btn btn-primary" href="{{ path('deputies_edit', {'id': deputy.id}) }}">edit</a>
 
     {{ include('deputies/_delete_form.html.twig') }}
 {% endblock %}

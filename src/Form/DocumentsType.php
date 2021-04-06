@@ -7,6 +7,7 @@ use App\Entity\Votes;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,13 +21,21 @@ class DocumentsType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('path')
-            ->add('govPath')
+            ->add('path', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('govPath', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
             ->add('votes', EntityType::class, [
                 'class' => Votes::class,
                 'choice_label' => 'title',
                 'attr' => [
-                    'class' => 'form-select'
+                    'class' => 'form-control'
                 ]
             ])
         ;

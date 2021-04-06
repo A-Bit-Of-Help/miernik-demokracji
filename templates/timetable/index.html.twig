@@ -27,8 +27,8 @@
                 <td><a href={{ timetable.link }}>{{ timetable.title }}</a></td>
                 <td>{{ timetable.term }}</td>
                 <td>
-                    <a href="{{ path('timetable_show', {'id': timetable.id}) }}">show</a>
-                    <a href="{{ path('timetable_edit', {'id': timetable.id}) }}">edit</a>
+                    <a href="{{ path('timetable_show', {'id': timetable.id}) }}"><span class="badge badge-info">show</span></a>
+                    <a href="{{ path('timetable_edit', {'id': timetable.id}) }}"><span class="badge badge-info">edit</span></a>
                 </td>
             </tr>
         {% else %}
@@ -39,5 +39,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('timetable_new') }}">Create new</a>
+    <a class="btn btn-success" href="{{ path('timetable_new') }}">Create new</a>
 {% endblock %}

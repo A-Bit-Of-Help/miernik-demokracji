@@ -14,7 +14,7 @@
                                 {% endif %} {% if app.user %}
                                     <div class="mb-3">
                                         {% trans %}login.logged{% endtrans%} {{ app.user.username }},
-                                        <a href="{{ path('app_logout') }}">{% trans %}login.logout{% endtrans %}</a>
+                                        <a class="btn btn-danger" href="{{ path('app_logout') }}">{% trans %}login.logout{% endtrans %}</a>
                                     </div>
                                 {% endif %}
                                 <div class="card-header mb-3">{% trans %}login.login{% endtrans %}</div>

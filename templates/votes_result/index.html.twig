@@ -19,8 +19,8 @@
                 <td>{{ votes_result.id }}</td>
                 <td>{{ votes_result.voteResult }}</td>
                 <td>
-                    <a href="{{ path('votes_result_show', {'id': votes_result.id}) }}">show</a>
-                    <a href="{{ path('votes_result_edit', {'id': votes_result.id}) }}">edit</a>
+                    <a href="{{ path('votes_result_show', {'id': votes_result.id}) }}"><span class="badge badge-info">show</span></a>
+                    <a href="{{ path('votes_result_edit', {'id': votes_result.id}) }}"><span class="badge badge-info">edit</span></a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('votes_result_new') }}">Create new</a>
+    <a class="btn btn-success" href="{{ path('votes_result_new') }}">Create new</a>
 {% endblock %}

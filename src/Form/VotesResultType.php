@@ -18,14 +18,14 @@ class VotesResultType extends AbstractType
         $builder
             ->add('voteResult', TextType::class, [
                 'attr' => [
-                    'class' => 'form-select'
+                    'class' => 'form-control'
                 ]
             ])
             ->add('vote', EntityType::class, [
                 'class' => Votes::class,
                 'choice_label' => 'title',
                 'attr' => [
-                    'class' => 'form-select'
+                    'class' => 'form-control'
                 ]
             ])
             ->add('deputies', EntityType::class, [
@@ -34,7 +34,7 @@ class VotesResultType extends AbstractType
                     return $deputies->getFirstname() . ' ' . $deputies->getMiddlename() . ' ' . $deputies->getSurname();
                 },
                 'attr' => [
-                    'class' => 'form-select'
+                    'class' => 'form-control'
                 ]
             ])
         ;

@@ -19,17 +19,17 @@ class VotesType extends AbstractType
         $builder
             ->add('hour', TimeType::class, [
                 'attr' => [
-                    'class' => 'form-select'
+                    'class' => 'form-control'
                 ]
             ])
             ->add('title', TextType::class, [
                 'attr' => [
-                    'class' => 'form-select'
+                    'class' => 'form-control'
                 ]
             ])
             ->add('agendaItem', IntegerType::class, [
                 'attr' => [
-                    'class' => 'form-select'
+                    'class' => 'form-control'
                 ]
             ])
             ->add('term', EntityType::class, [
@@ -38,7 +38,7 @@ class VotesType extends AbstractType
                     return $timetable->getDate() . ' - ' . $timetable->getNumber();
                 },
                 'attr' => [
-                    'class' => 'form-select'
+                    'class' => 'form-control'
                 ]
             ])
         ;

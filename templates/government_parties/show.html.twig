@@ -25,14 +25,14 @@
             </tr>
         </tbody>
     </table>
+    <a class="btn btn-primary" href="{{ path('government_parties_index') }}">back to list</a>
+
+    <a class="btn btn-primary" href="{{ path('government_parties_edit', {'id': government_party.id}) }}">edit</a>
+
+    {{ include('government_parties/_delete_form.html.twig') }}
 
     <h2>DeputiesList</h2>
 
     {% include 'deputies/list.html.twig' %}
 
-    <a href="{{ path('government_parties_index') }}">back to list</a>
-
-    <a href="{{ path('government_parties_edit', {'id': government_party.id}) }}">edit</a>
-
-    {{ include('government_parties/_delete_form.html.twig') }}
 {% endblock %}

@@ -23,7 +23,11 @@ class GovernmentPartiesType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('logo')
+            ->add('logo', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
         ;
     }
 

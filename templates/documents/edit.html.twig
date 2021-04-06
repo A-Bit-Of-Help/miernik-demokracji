@@ -7,7 +7,7 @@
 
     {{ include('documents/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('documents_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('documents_index') }}">back to list</a>
 
     {{ include('documents/_delete_form.html.twig') }}
 {% endblock %}

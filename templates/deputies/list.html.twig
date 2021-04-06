@@ -1,6 +1,6 @@
 {% block body %}
 <table class="table">
-    <thead>
+    <thead class="thead-light">
     <tr>
         <th>Id</th>
         <th>Firstname</th>
@@ -18,11 +18,11 @@
             <td>{{ deputy.firstname }}</td>
             <td>{{ deputy.middlename }}</td>
             <td>{{ deputy.surname }}</td>
-            <td><a href="{{ deputy.link }}">gov site</a></td>
+            <td><a href="{{ deputy.link }}"><span class="badge badge-info">gov site</span></a></td>
             <td><img src="{{ deputy.photo }}" /></td>
             <td>
-                <a href="{{ path('deputies_show', {'id': deputy.id}) }}">show</a>
-                <a href="{{ path('deputies_edit', {'id': deputy.id}) }}">edit</a>
+                <a href="{{ path('deputies_show', {'id': deputy.id}) }}"><span class="badge badge-info">show</span></a>
+                <a href="{{ path('deputies_edit', {'id': deputy.id}) }}"><span class="badge badge-info">edit</span></a>
             </td>
         </tr>
     {% else %}

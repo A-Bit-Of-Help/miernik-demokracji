@@ -39,7 +39,11 @@ class TimetableType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('link')
+            ->add('link', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
             ->add('term', IntegerType::class, [
                 'attr' => [
                     'class' => 'form-control'
