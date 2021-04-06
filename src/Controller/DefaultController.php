@@ -19,4 +19,15 @@ class DefaultController extends AbstractController
         return $this->render('base.html.twig', [
         ]);
     }
+
+    /**
+     * @Route("/no_right_permission", name="no_right_permission")
+     * @param Request $request
+     * @return Response
+     */
+    public function noRightPermission(Request $request): Response
+    {
+        return $this->render('security/right_permission.html.twig', [
+        ]);
+    }
 }

@@ -10,12 +10,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use voku\helper\HtmlDomParser;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/timetable")
+ * @IsGranted("ROLE_USER")
  */
 class TimetableController extends AbstractController
 {
+    /**
+     * @param TimetableRepository $timetableRepository
+     * @Route("/parser", name="deputies_parser", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
+     */
     public function parserTimetable(TimetableRepository $timetableRepository)
     {
         $em = $this->getDoctrine()->getManager();
@@ -56,6 +63,7 @@ class TimetableController extends AbstractController
 
     /**
      * @Route("/new", name="timetable_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -89,6 +97,7 @@ class TimetableController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="timetable_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Timetable $timetable): Response
     {
@@ -109,6 +118,7 @@ class TimetableController extends AbstractController
 
     /**
      * @Route("/{id}", name="timetable_delete", methods={"POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Timetable $timetable): Response
     {

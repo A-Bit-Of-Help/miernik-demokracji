@@ -11,13 +11,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use voku\helper\HtmlDomParser;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/government_parties")
+ * @IsGranted("ROLE_USER")
  */
 class GovernmentPartiesController extends AbstractController
 {
-
+    /**
+     * @param GovernmentPartiesRepository $governmentPartiesRepository
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/parser", name="government_parties_parser", methods={"GET"})
+     */
     public function parserGovernmentParties(GovernmentPartiesRepository $governmentPartiesRepository)
     {
         $em = $this->getDoctrine()->getManager();
@@ -67,6 +73,7 @@ class GovernmentPartiesController extends AbstractController
      * @Route("/new", name="government_parties_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public
     function new(Request $request): Response
@@ -108,6 +115,7 @@ class GovernmentPartiesController extends AbstractController
      * @param Request $request
      * @param GovernmentParties $governmentParty
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, GovernmentParties $governmentParty): Response
     {
@@ -131,6 +139,7 @@ class GovernmentPartiesController extends AbstractController
      * @param Request $request
      * @param GovernmentParties $governmentParty
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, GovernmentParties $governmentParty): Response
     {

@@ -11,9 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use voku\helper\HtmlDomParser;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/deputies")
+ * @IsGranted("ROLE_USER")
  */
 class DeputiesController extends AbstractController
 {
@@ -21,6 +23,7 @@ class DeputiesController extends AbstractController
      * @param GovernmentPartiesRepository $governmentPartiesRepository
      * @param DeputiesRepository $deputiesRepository
      * @Route("/parser", name="deputies_parser", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function parserDeputies(GovernmentPartiesRepository $governmentPartiesRepository,
                                    DeputiesRepository $deputiesRepository
@@ -92,6 +95,7 @@ class DeputiesController extends AbstractController
 
     /**
      * @Route("/new", name="deputies_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -125,6 +129,7 @@ class DeputiesController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="deputies_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Deputies $deputy): Response
     {
@@ -145,6 +150,7 @@ class DeputiesController extends AbstractController
 
     /**
      * @Route("/{id}", name="deputies_delete", methods={"POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Deputies $deputy): Response
     {

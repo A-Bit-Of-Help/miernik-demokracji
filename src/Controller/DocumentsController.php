@@ -9,9 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/documents")
+ * @IsGranted("ROLE_USER")
  */
 class DocumentsController extends AbstractController
 {
@@ -27,6 +29,7 @@ class DocumentsController extends AbstractController
 
     /**
      * @Route("/new", name="documents_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -60,6 +63,7 @@ class DocumentsController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="documents_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Documents $document): Response
     {
@@ -80,6 +84,7 @@ class DocumentsController extends AbstractController
 
     /**
      * @Route("/{id}", name="documents_delete", methods={"POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Documents $document): Response
     {
