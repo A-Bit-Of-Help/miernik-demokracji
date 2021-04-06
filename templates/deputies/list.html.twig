@@ -1,35 +1,29 @@
 {% block body %}
-<table class="table">
-    <thead class="thead-light">
-    <tr>
-        <th>Id</th>
-        <th>Firstname</th>
-        <th>Secondname</th>
-        <th>Surname</th>
-        <th>Link</th>
-        <th>Photo</th>
-        <th>actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for deputy in deputies %}
-        <tr>
-            <td>{{ deputy.id }}</td>
-            <td>{{ deputy.firstname }}</td>
-            <td>{{ deputy.middlename }}</td>
-            <td>{{ deputy.surname }}</td>
-            <td><a href="{{ deputy.link }}"><span class="badge badge-info">gov site</span></a></td>
-            <td><img src="{{ deputy.photo }}" /></td>
-            <td>
-                <a href="{{ path('deputies_show', {'id': deputy.id}) }}"><span class="badge badge-info">show</span></a>
-                <a href="{{ path('deputies_edit', {'id': deputy.id}) }}"><span class="badge badge-info">edit</span></a>
-            </td>
-        </tr>
-    {% else %}
-        <tr>
-            <td colspan="7">no records found</td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+        {% for deputy in deputies %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <div class="card">
+                            <div class="card-horizontal">
+                                <div class="img-square-wrapper">
+                                    <img class="" src="{{ deputy.photo }}" alt="Deputies photo">
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ deputy.firstname }} {{ deputy.middlename }} {{ deputy.surname }}</h4>
+                                    
+                                </div>
+                                <div class="img-square-wrapper">
+                                    <img class="" src="{{ deputy.governmentParties.logo }}" alt="Government parties logo" height="53">
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="{{ deputy.link }}"><span class="badge badge-info">gov site</span></a>
+                                <a href="{{ path('deputies_show', {'id': deputy.id}) }}"><span class="badge badge-info">show</span></a>
+                                <a href="{{ path('deputies_edit', {'id': deputy.id}) }}"><span class="badge badge-info">edit</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
 {% endblock %}
