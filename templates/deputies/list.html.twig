@@ -1,29 +1,35 @@
 {% block body %}
-        {% for deputy in deputies %}
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 mt-3">
-                        <div class="card">
-                            <div class="card-horizontal">
-                                <div class="img-square-wrapper">
-                                    <img class="" src="{{ deputy.photo }}" alt="Deputies photo">
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="card-title">{{ deputy.firstname }} {{ deputy.middlename }} {{ deputy.surname }}</h4>
-                                    
-                                </div>
-                                <div class="img-square-wrapper">
-                                    <img class="" src="{{ deputy.governmentParties.logo }}" alt="Government parties logo" height="53">
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <a href="{{ deputy.link }}"><span class="badge badge-info">gov site</span></a>
-                                <a href="{{ path('deputies_show', {'id': deputy.id}) }}"><span class="badge badge-info">show</span></a>
-                                <a href="{{ path('deputies_edit', {'id': deputy.id}) }}"><span class="badge badge-info">edit</span></a>
-                            </div>
+    <style>
+        .card {
+            max-width: 400px;
+            min-width: 380px;
+            padding: 6px 6px;
+        }
+    </style>
+        <div class="d-flex card-group justify-content-center">
+            {% for deputy in deputies %}
+                <div class="card ">
+                    <div class="card-horizontal">
+                        <div class="img-square-wrapper">
+                            <img class="" src="{{ deputy.photo }}" alt="Deputies photo">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">{{ deputy.firstname }} {{ deputy.middlename }} {{ deputy.surname }}</h4>
+
+                        </div>
+                        <div class="img-square-wrapper">
+                            <img class="" src="{{ deputy.governmentParties.logo }}" alt="Government parties logo"
+                                 height="53">
                         </div>
                     </div>
+                    <div class="card-footer">
+                        <a href="{{ deputy.link }}"><span class="badge badge-info">gov site</span></a>
+                        <a href="{{ path('deputies_show', {'id': deputy.id}) }}"><span
+                                    class="badge badge-info">show</span></a>
+                        <a href="{{ path('deputies_edit', {'id': deputy.id}) }}"><span
+                                    class="badge badge-info">edit</span></a>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
 {% endblock %}
