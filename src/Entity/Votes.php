@@ -27,7 +27,7 @@ class Votes
     private $hour;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $title;
 

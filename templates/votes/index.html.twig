@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Term</th>
                 <th>Hour</th>
                 <th>Title</th>
                 <th>AgendaItem</th>
@@ -19,6 +20,7 @@
         {% for vote in votes %}
             <tr>
                 <td>{{ vote.id }}</td>
+                <td>{{ vote.term.number }}</td>
                 <td>{{ vote.hour ? vote.hour|date('H:i:s') : '' }}</td>
                 <td>{{ vote.title }}</td>
                 <td>{{ vote.agendaItem }}</td>
