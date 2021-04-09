@@ -41,64 +41,57 @@ class VotesResultController extends AbstractController
         set_time_limit(0);
 
         $em = $this->getDoctrine()->getManager();
-        $votesOnSession = HtmlDomParser::file_get_html('http://sejm.gov.pl/Sejm9.nsf/agent.xsp?symbol=posglos&NrKadencji=9');
-        $elementsOnSession = $votesOnSession->find('.left a');
-        foreach ($elementsOnSession as $eOnSession) {
-            $hrefDate = $eOnSession->href;
-            $votesOnDate = HtmlDomParser::file_get_html('http://sejm.gov.pl/Sejm9.nsf/' . $hrefDate);
-            $sitesResult = $votesOnDate->find('.bold a');
-            foreach ($sitesResult as $siteResult)
-            {
-                $voteOnDate = HtmlDomParser::file_get_html('http://sejm.gov.pl/Sejm9.nsf/' . $siteResult->href);
-                $dateVotes = $voteOnDate->find('table .left a');
+        $votes = $votesRepository->findBy(['parser' => false]);
 
-                foreach ($dateVotes as $dateVote){
-                    $partiesVotesHref = $dateVote->href;
-                    $votesResult = HtmlDomParser::file_get_html('http://sejm.gov.pl/Sejm9.nsf/' . $partiesVotesHref);
-                    $deputiesList = $votesResult->find('tbody td');
-                    $string = $votesResult->findOne('#title_content h1')->text;
-                    $agendaItem = str_replace('Głosowanie nr ', '', substr($string, 0, strpos($string, ' dnia')));
-                    $date = new DateTime(substr($string, -10));
-                    $index = 1;
-                    $name = '';
-                    $vote = '';
-                    foreach ($deputiesList as $deputyFor) {
-                        if($index % 2 == 0){
-                            $name = $deputyFor->innerText();
-                        }
-                        if($index % 3 == 0){
-                            $vote = $deputyFor->innerText();;
-                        }
-                        if($index == 3){
-                            $name = explode(' ', html_entity_decode($name));
-                            $num = count($name);
-                            $firstname = $middlename = $surname = null;
-                            if ($num == 2) {
-                                list($surname, $firstname) = $name;
-                            } else {
-                                list($surname, $middlename, $firstname) = $name;
-                            }
-                            $votesResult = new VotesResult();
-                            $deputies = $deputiesRepository->findOneBy(['firstname' => $firstname, 'middlename' => $middlename, 'surname' => $surname]);
-                            $votes = $votesRepository->findOneBy(['date' => $date, 'agendaItem' => $agendaItem]);
-                            $votesResult->setDeputies($deputies);
-                            $votesResult->setVoteResult($vote);
-                            $votesResult->setVote($votes);
-                            if($votesResultRepository->findOneBy([
-                                'deputies' => $deputies,
-                                'vote' => $votes
-                            ]) == null) {
-                                $em->persist($votesResult);
-                            }
+        foreach ($votes as $vote) {
+            $voteOnDate = HtmlDomParser::file_get_html($vote->getLink());
+            $dateVotes = $voteOnDate->find('table .left a');
 
-                            $index = 1;
-                        } else {
-                            $index++;
-                        }
+            foreach ($dateVotes as $dateVote) {
+                $partiesVotesHref = $dateVote->href;
+                $votesResult = HtmlDomParser::file_get_html('http://sejm.gov.pl/Sejm9.nsf/' . $partiesVotesHref);
+                $deputiesList = $votesResult->find('tbody td');
+                $string = $votesResult->findOne('#title_content h1')->text;
+                $index = 1;
+                $name = '';
+                $voteResult = '';
+                foreach ($deputiesList as $deputyFor) {
+                    if ($index % 2 == 0) {
+                        $name = $deputyFor->innerText();
                     }
-                    $em->flush();
+                    if ($index % 3 == 0) {
+                        $voteResult = $deputyFor->innerText();;
+                    }
+                    if ($index == 3) {
+                        $name = explode(' ', html_entity_decode($name));
+                        $num = count($name);
+                        $firstname = $middlename = $surname = null;
+                        if ($num == 2) {
+                            list($surname, $firstname) = $name;
+                        } else {
+                            list($surname, $middlename, $firstname) = $name;
+                        }
+                        $votesResult = new VotesResult();
+                        $deputies = $deputiesRepository->findOneBy(['firstname' => $firstname, 'middlename' => $middlename, 'surname' => $surname]);
+                        $votesResult->setDeputies($deputies);
+                        $votesResult->setVoteResult($voteResult);
+                        $votesResult->setVote($vote);
+
+                        if ($votesResultRepository->findOneBy([
+                                'deputies' => $deputies,
+                                'vote' => $vote
+                            ]) == null) {
+                            $em->persist($votesResult);
+                        }
+                        $index = 1;
+                    } else {
+                        $index++;
+                    }
                 }
+                $vote->setParser(true);
+                $em->persist($vote);
             }
+            $em->flush();
         }
         return $this->render('votes_result/index.html.twig', [
             'votes_results' => $votesResultRepository->findAll(),
@@ -176,7 +169,7 @@ class VotesResultController extends AbstractController
      */
     public function delete(Request $request, VotesResult $votesResult): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$votesResult->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $votesResult->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($votesResult);
             $entityManager->flush();
