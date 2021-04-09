@@ -24,7 +24,11 @@
                 <td>{{ vote.date ? vote.date|date('Y-m-d') : '' }}</td>
                 <td>{{ vote.term.number }}</td>
                 <td>{{ vote.hour ? vote.hour|date('H:i:s') : '' }}</td>
-                <td>{{ vote.title }}</td>
+                <td>
+                    <a href="{{ vote.link }}">
+                    {{ vote.title }}
+                    </a>
+                </td>
                 <td>{{ vote.agendaItem }}</td>
                 <td>
                     <a href="{{ path('votes_show', {'id': vote.id}) }}"><span class="badge badge-info">show</span></a>

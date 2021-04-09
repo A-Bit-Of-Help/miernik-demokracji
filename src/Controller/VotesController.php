@@ -46,6 +46,8 @@ class VotesController extends AbstractController
                 );
                 $elementsOnDate = $votesOnDate->findOne('tbody');
                 foreach ($elementsOnDate as $eOnDate) {
+                    $sublink = $eOnDate->find('.bold a')->href;
+                    $link = 'http://sejm.gov.pl/Sejm9.nsf/' . $sublink[0];
                     $data = $eOnDate->find('td')->text;
                     $agendaItem = $data[0];
                     $hour = date_create_from_format('H:i:s', $data[1]);
@@ -57,7 +59,7 @@ class VotesController extends AbstractController
                         $votes->setHour($hour);
                         $votes->setTitle($title);
                         $votes->setAgendaItem($agendaItem);
-                        $votes->setLink('http://sejm.gov.pl/Sejm9.nsf/' . $hrefDate->href);
+                        $votes->setLink($link);
                         $em->persist($votes);
                     }
                 }
