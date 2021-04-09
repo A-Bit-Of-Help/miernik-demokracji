@@ -25,7 +25,7 @@ class GovernmentMeetingsDate
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Timetable::class, inversedBy="yes")
+     * @ORM\ManyToOne(targetEntity=Timetable::class, inversedBy="governmentMeetings")
      * @ORM\JoinColumn(nullable=false)
      */
     private $GovernmentMeeting;
