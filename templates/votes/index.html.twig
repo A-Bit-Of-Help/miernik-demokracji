@@ -25,7 +25,7 @@
                 <td>{{ vote.term.number }}</td>
                 <td>{{ vote.hour ? vote.hour|date('H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ vote.link }}">
+                    <a href="{{ path('votes_result_vote', {'id': vote.id}) }}">
                     {{ vote.title }}
                     </a>
                 </td>

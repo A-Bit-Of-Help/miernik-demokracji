@@ -5,10 +5,8 @@ namespace App\Controller;
 use App\Entity\VotesResult;
 use App\Form\VotesResultType;
 use App\Repository\DeputiesRepository;
-use App\Repository\TimetableRepository;
 use App\Repository\VotesRepository;
 use App\Repository\VotesResultRepository;
-use DateTime;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,7 +35,7 @@ class VotesResultController extends AbstractController
         VotesResultRepository $votesResultRepository,
         DeputiesRepository $deputiesRepository,
         VotesRepository $votesRepository
-    )
+    ): Response
     {
         set_time_limit(0);
 
@@ -52,7 +50,6 @@ class VotesResultController extends AbstractController
                 $partiesVotesHref = $dateVote->href;
                 $votesResult = HtmlDomParser::file_get_html('http://sejm.gov.pl/Sejm9.nsf/' . $partiesVotesHref);
                 $deputiesList = $votesResult->find('tbody td');
-                $string = $votesResult->findOne('#title_content h1')->text;
                 $index = 1;
                 $name = '';
                 $voteResult = '';
@@ -100,11 +97,16 @@ class VotesResultController extends AbstractController
     }
 
     /**
-     * @Route("/", name="votes_result_index", methods={"GET"})
+     * @Route("/vote/{id}", name="votes_result_vote", methods={"GET"})
+     * @param VotesResultRepository $votesResultRepository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @param $id
+     * @return Response
      */
-    public function index(VotesResultRepository $votesResultRepository, PaginatorInterface $paginator, Request $request): Response
+    public function index(VotesResultRepository $votesResultRepository, PaginatorInterface $paginator, Request $request, $id): Response
     {
-        $votesResult = $votesResultRepository->findAll();
+        $votesResult = $votesResultRepository->findBy(['vote' => $id]);
 
         $pagination = $paginator->paginate($votesResult, $request->query->getInt('page', 1), 30);
         return $this->render('votes_result/index.html.twig', [
@@ -115,6 +117,8 @@ class VotesResultController extends AbstractController
     /**
      * @Route("/new", name="votes_result_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -138,6 +142,8 @@ class VotesResultController extends AbstractController
 
     /**
      * @Route("/{id}", name="votes_result_show", methods={"GET"})
+     * @param VotesResult $votesResult
+     * @return Response
      */
     public function show(VotesResult $votesResult): Response
     {
@@ -149,6 +155,9 @@ class VotesResultController extends AbstractController
     /**
      * @Route("/{id}/edit", name="votes_result_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @param VotesResult $votesResult
+     * @return Response
      */
     public function edit(Request $request, VotesResult $votesResult): Response
     {
@@ -170,6 +179,9 @@ class VotesResultController extends AbstractController
     /**
      * @Route("/{id}", name="votes_result_delete", methods={"POST"})
      * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @param VotesResult $votesResult
+     * @return Response
      */
     public function delete(Request $request, VotesResult $votesResult): Response
     {

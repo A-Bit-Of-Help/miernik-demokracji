@@ -3,14 +3,12 @@
         {# sorting of properties based on query components #}
         <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
         <th{% if pagination.isSorted('a.deputies') %} class="sorted"{% endif %}>
-            {{ knp_pagination_sortable(pagination, 'Deputeis', 'a.deputies') }}
+            {{ knp_pagination_sortable(pagination, 'Deputeis', 'deputies.surname') }}
         </th>
         <th>Parties logo</th>
-        <th{% if pagination.isSorted('a.vote') %} class="sorted"{% endif %}>
-            {{ knp_pagination_sortable(pagination, 'Title', 'a.title') }}
-        </th>
+        <th>Title</th>
         <th{% if pagination.isSorted('a.voteResult') %} class="sorted"{% endif %}>
-            {{ knp_pagination_sortable(pagination, 'Vote result', 'a.voteResult') }}
+            {{ knp_pagination_sortable(pagination, 'Vote result', 'voteResult') }}
         </th>
     </tr>
 
@@ -19,10 +17,9 @@
         <tr {% if loop.index is odd %}class="color"{% endif %}>
             <td>{{ article.id }}</td>
             <td>
-                {{ article.deputies.firstname }} {{ article.deputies.middlename }} {{ article.deputies.surname }}
-
+                {{ article.deputies.surname }} {{ article.deputies.middlename }} {{ article.deputies.firstname }}
             </td>
-            <td><img src="{{ article.deputies.governmentParties.logo }}" height="20"/></td>
+            <td><img src="{{ article.deputies.governmentParties.logo }}" height="20" alt="Government parties logo"/></td>
             <td>{{ article.vote.title }}</td>
             <td>{{ article.voteResult }}</td>
         </tr>
