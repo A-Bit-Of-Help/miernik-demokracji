@@ -10,6 +10,7 @@ use App\Repository\VotesRepository;
 use App\Repository\VotesResultRepository;
 use DateTime;
 use Exception;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -101,10 +102,13 @@ class VotesResultController extends AbstractController
     /**
      * @Route("/", name="votes_result_index", methods={"GET"})
      */
-    public function index(VotesResultRepository $votesResultRepository): Response
+    public function index(VotesResultRepository $votesResultRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $votesResult = $votesResultRepository->findAll();
+
+        $pagination = $paginator->paginate($votesResult, $request->query->getInt('page', 1), 30);
         return $this->render('votes_result/index.html.twig', [
-            'votes_results' => $votesResultRepository->findAll(),
+            'pagination' => $pagination,
         ]);
     }
 

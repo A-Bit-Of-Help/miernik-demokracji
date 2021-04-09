@@ -4,8 +4,10 @@
 
 {% block body %}
     <h1>VotesResult index</h1>
-
+    <h4>Ilość oddanych głosów <span class="badge badge-warning">{{ pagination.getTotalItemCount }}</span></h4>
     <a class="btn btn-success" href="{{ path('votes_result_new') }}">Create new</a>
     {% include('votes_result/list.html.twig') %}
-
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 {% endblock %}

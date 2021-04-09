@@ -1,29 +1,30 @@
 <table class="table">
-    <thead>
     <tr>
-        <th>Id</th>
-        <th>Deputies</th>
-        <th>Vote title</th>
-        <th>VoteResult</th>
-        <th>actions</th>
+        {# sorting of properties based on query components #}
+        <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
+        <th{% if pagination.isSorted('a.deputies') %} class="sorted"{% endif %}>
+            {{ knp_pagination_sortable(pagination, 'Deputeis', 'a.deputies') }}
+        </th>
+        <th>Parties logo</th>
+        <th{% if pagination.isSorted('a.vote') %} class="sorted"{% endif %}>
+            {{ knp_pagination_sortable(pagination, 'Title', 'a.title') }}
+        </th>
+        <th{% if pagination.isSorted('a.voteResult') %} class="sorted"{% endif %}>
+            {{ knp_pagination_sortable(pagination, 'Vote result', 'a.voteResult') }}
+        </th>
     </tr>
-    </thead>
-    <tbody>
-    {% for votes_result in votes_results %}
-        <tr>
-            <td>{{ votes_result.id }}</td>
-            <td>{{ votes_result.deputies.firstname }} {{ votes_result.deputies.middlename }} {{ votes_result.deputies.surname }}</td>
-            <td>{{ votes_result.vote.title }}</td>
-            <td>{{ votes_result.voteResult }}</td>
+
+    {# table body #}
+    {% for article in pagination %}
+        <tr {% if loop.index is odd %}class="color"{% endif %}>
+            <td>{{ article.id }}</td>
             <td>
-                <a href="{{ path('votes_result_show', {'id': votes_result.id}) }}"><span class="badge badge-info">show</span></a>
-                <a href="{{ path('votes_result_edit', {'id': votes_result.id}) }}"><span class="badge badge-info">edit</span></a>
+                {{ article.deputies.firstname }} {{ article.deputies.middlename }} {{ article.deputies.surname }}
+
             </td>
-        </tr>
-    {% else %}
-        <tr>
-            <td colspan="3">no records found</td>
+            <td><img src="{{ article.deputies.governmentParties.logo }}" height="20"/></td>
+            <td>{{ article.vote.title }}</td>
+            <td>{{ article.voteResult }}</td>
         </tr>
     {% endfor %}
-    </tbody>
 </table>
