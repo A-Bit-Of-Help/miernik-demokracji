@@ -74,9 +74,9 @@ class VotesResultController extends AbstractController
                             $num = count($name);
                             $firstname = $middlename = $surname = null;
                             if ($num == 2) {
-                                list($firstname, $surname) = $name;
+                                list($surname, $firstname) = $name;
                             } else {
-                                list($firstname, $middlename, $surname) = $name;
+                                list($surname, $middlename, $firstname) = $name;
                             }
                             $votesResult = new VotesResult();
                             $deputies = $deputiesRepository->findOneBy(['firstname' => $firstname, 'middlename' => $middlename, 'surname' => $surname]);

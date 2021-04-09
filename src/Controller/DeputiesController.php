@@ -38,9 +38,9 @@ class DeputiesController extends AbstractController
             $firstname = $middlename = $surname = null;
 
             if ($num == 2) {
-                list($firstname, $surname) = $name;
+                list($surname, $firstname) = $name;
             } else {
-                list($firstname, $middlename, $surname) = $name;
+                list($surname, $middlename, $firstname) = $name;
             }
 
             $abbreviation = str_replace(
