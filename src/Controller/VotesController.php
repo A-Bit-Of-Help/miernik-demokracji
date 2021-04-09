@@ -6,6 +6,8 @@ use App\Entity\Votes;
 use App\Form\VotesType;
 use App\Repository\TimetableRepository;
 use App\Repository\VotesRepository;
+use DateTime;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,10 +22,12 @@ use voku\helper\HtmlDomParser;
 class VotesController extends AbstractController
 {
     /**
-     * @param VotesRepository $votesRepository
-     * @param TimetableRepository $timetableRepository
      * @Route("/parser", name="votes_parser", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
+     * @param VotesRepository $votesRepository
+     * @param TimetableRepository $timetableRepository
+     * @return Response
+     * @throws Exception
      */
     public function parserVotes(VotesRepository $votesRepository, TimetableRepository $timetableRepository): Response
     {
@@ -33,28 +37,32 @@ class VotesController extends AbstractController
         $elementsOnSession = $votesOnSession->find('tbody td');
         foreach ($elementsOnSession as $eOnSession) {
             $hrefDates = $eOnSession->find('a');
-            foreach ($hrefDates as $hrefDate){
+            foreach ($hrefDates as $hrefDate) {
                 $votesOnDate = HtmlDomParser::file_get_html('http://sejm.gov.pl/Sejm9.nsf/' . $hrefDate->href);
-                $term = $timetableRepository->findOneBy(['number' => substr($votesOnDate->findOne('#title_content h1')->text, -21, 2)]);
+                $string = $votesOnDate->findOne('#title_content h1')->text;
+                $term = $timetableRepository->findOneBy(['number' => substr($string, -21, 2)]);
+                $date = new DateTime(
+                    str_replace('Głosowania w dniu ', '', substr($string, 0, strpos($string, ' r.')))
+                );
                 $elementsOnDate = $votesOnDate->findOne('tbody');
                 foreach ($elementsOnDate as $eOnDate) {
                     $data = $eOnDate->find('td')->text;
                     $agendaItem = $data[0];
                     $hour = date_create_from_format('H:i:s', $data[1]);
                     $title = $data[2];
-                    if($votesRepository->findOneBy(['term' => $term, 'hour' => $hour]) == null){
+                    if ($votesRepository->findOneBy(['term' => $term, 'hour' => $hour]) == null) {
                         $votes = new Votes();
+                        $votes->setDate($date);
                         $votes->setTerm($term);
                         $votes->setHour($hour);
                         $votes->setTitle($title);
                         $votes->setAgendaItem($agendaItem);
                         $em->persist($votes);
-                        $em->flush();
                     }
-
                 }
             }
         }
+        $em->flush();
         return $this->render('votes/index.html.twig', [
             'votes' => $votesRepository->findAll(),
         ]);
