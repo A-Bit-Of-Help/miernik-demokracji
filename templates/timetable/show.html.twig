@@ -19,7 +19,7 @@
                 <th>Date</th>
                 <td>
                     {% for governmentMeeting in timetable.governmentMeetings %}
-                        {{ governmentMeeting.date ? governmentMeeting.date|date('Y-m-d') : '' }}
+                        <span class="badge-pill badge-primary">{{ governmentMeeting.date ? governmentMeeting.date|date('Y-m-d') : '' }}</span>
                     {% endfor %}
                 </td>
             </tr>

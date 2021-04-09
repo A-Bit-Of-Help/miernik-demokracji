@@ -10,7 +10,7 @@
         <tr>
             <th>Id</th>
             <th>Number</th>
-            <th>Date</th>
+            <th>Date votes meeting</th>
             <th>StartTime</th>
             <th>Link</th>
             <th>Term</th>
@@ -24,7 +24,7 @@
                 <td>{{ timetable.number }}</td>
                 <td>
                     {% for governmentMeeting in timetable.governmentMeetings %}
-                        {{ governmentMeeting.date ? governmentMeeting.date|date('Y-m-d') : '' }}
+                        <span class="badge-pill badge-primary">{{ governmentMeeting.date ? governmentMeeting.date|date('Y-m-d') : '' }}</span>
                     {% endfor %}
                 </td>
                 <td>{{ timetable.startTime ? timetable.startTime|date('H:i:s') : '' }}</td>
