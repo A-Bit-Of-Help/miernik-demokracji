@@ -1,0 +1,29 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Deputies</th>
+        <th>Vote title</th>
+        <th>VoteResult</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for votes_result in votes_results %}
+        <tr>
+            <td>{{ votes_result.id }}</td>
+            <td>{{ votes_result.deputies.firstname }} {{ votes_result.deputies.middlename }} {{ votes_result.deputies.surname }}</td>
+            <td>{{ votes_result.vote.title }}</td>
+            <td>{{ votes_result.voteResult }}</td>
+            <td>
+                <a href="{{ path('votes_result_show', {'id': votes_result.id}) }}"><span class="badge badge-info">show</span></a>
+                <a href="{{ path('votes_result_edit', {'id': votes_result.id}) }}"><span class="badge badge-info">edit</span></a>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="3">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

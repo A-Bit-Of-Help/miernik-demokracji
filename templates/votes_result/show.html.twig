@@ -12,6 +12,14 @@
                 <td>{{ votes_result.id }}</td>
             </tr>
             <tr>
+                <th>Deputies</th>
+                <td>{{ votes_result.deputies.firstname }} {{ votes_result.deputies.middlename }} {{ votes_result.deputies.surname }}</td>
+            </tr>
+            <tr>
+                <th>Vote title</th>
+                <td>{{ votes_result.vote.title }}</td>
+            </tr>
+            <tr>
                 <th>VoteResult</th>
                 <td>{{ votes_result.voteResult }}</td>
             </tr>
