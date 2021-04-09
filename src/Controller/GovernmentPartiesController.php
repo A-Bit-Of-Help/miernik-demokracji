@@ -99,6 +99,7 @@ class GovernmentPartiesController extends AbstractController
     /**
      * @Route("/{id}", name="government_parties_show", methods={"GET"})
      * @param GovernmentParties $governmentParty
+     * @param DeputiesRepository $deputiesRepository
      * @return Response
      */
     public function show(GovernmentParties $governmentParty, DeputiesRepository $deputiesRepository): Response

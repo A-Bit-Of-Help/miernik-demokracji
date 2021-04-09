@@ -53,6 +53,8 @@ class TimetableController extends AbstractController
 
     /**
      * @Route("/", name="timetable_index", methods={"GET"})
+     * @param TimetableRepository $timetableRepository
+     * @return Response
      */
     public function index(TimetableRepository $timetableRepository): Response
     {
@@ -64,6 +66,8 @@ class TimetableController extends AbstractController
     /**
      * @Route("/new", name="timetable_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -87,6 +91,8 @@ class TimetableController extends AbstractController
 
     /**
      * @Route("/{id}", name="timetable_show", methods={"GET"})
+     * @param Timetable $timetable
+     * @return Response
      */
     public function show(Timetable $timetable): Response
     {
@@ -98,6 +104,9 @@ class TimetableController extends AbstractController
     /**
      * @Route("/{id}/edit", name="timetable_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @param Timetable $timetable
+     * @return Response
      */
     public function edit(Request $request, Timetable $timetable): Response
     {
@@ -119,6 +128,9 @@ class TimetableController extends AbstractController
     /**
      * @Route("/{id}", name="timetable_delete", methods={"POST"})
      * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @param Timetable $timetable
+     * @return Response
      */
     public function delete(Request $request, Timetable $timetable): Response
     {

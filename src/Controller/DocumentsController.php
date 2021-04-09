@@ -19,6 +19,8 @@ class DocumentsController extends AbstractController
 {
     /**
      * @Route("/", name="documents_index", methods={"GET"})
+     * @param DocumentsRepository $documentsRepository
+     * @return Response
      */
     public function index(DocumentsRepository $documentsRepository): Response
     {
@@ -30,6 +32,8 @@ class DocumentsController extends AbstractController
     /**
      * @Route("/new", name="documents_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -53,6 +57,8 @@ class DocumentsController extends AbstractController
 
     /**
      * @Route("/{id}", name="documents_show", methods={"GET"})
+     * @param Documents $document
+     * @return Response
      */
     public function show(Documents $document): Response
     {
@@ -64,6 +70,9 @@ class DocumentsController extends AbstractController
     /**
      * @Route("/{id}/edit", name="documents_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @param Documents $document
+     * @return Response
      */
     public function edit(Request $request, Documents $document): Response
     {
@@ -85,6 +94,9 @@ class DocumentsController extends AbstractController
     /**
      * @Route("/{id}", name="documents_delete", methods={"POST"})
      * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @param Documents $document
+     * @return Response
      */
     public function delete(Request $request, Documents $document): Response
     {
