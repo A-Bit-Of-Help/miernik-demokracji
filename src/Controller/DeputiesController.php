@@ -20,14 +20,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class DeputiesController extends AbstractController
 {
     /**
-     * @param GovernmentPartiesRepository $governmentPartiesRepository
-     * @param DeputiesRepository $deputiesRepository
      * @Route("/parser", name="deputies_parser", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
+     * @param GovernmentPartiesRepository $governmentPartiesRepository
+     * @param DeputiesRepository $deputiesRepository
+     * @return Response
      */
     public function parserDeputies(GovernmentPartiesRepository $governmentPartiesRepository,
                                    DeputiesRepository $deputiesRepository
-    )
+    ): Response
     {
         $em = $this->getDoctrine()->getManager();
         $html = HtmlDomParser::file_get_html('http://www.sejm.gov.pl/Sejm9.nsf/poslowie.xsp?type=A');
@@ -75,8 +76,8 @@ class DeputiesController extends AbstractController
             $deputies->setPhoto($photo);
 
             $em->persist($deputies);
-            $em->flush();
         };
+        $em->flush();
 
         return $this->render('deputies/index.html.twig', [
             'deputies' => $deputiesRepository->findAll(),
@@ -85,6 +86,8 @@ class DeputiesController extends AbstractController
 
     /**
      * @Route("/", name="deputies_index", methods={"GET"})
+     * @param DeputiesRepository $deputiesRepository
+     * @return Response
      */
     public function index(DeputiesRepository $deputiesRepository): Response
     {
@@ -96,6 +99,8 @@ class DeputiesController extends AbstractController
     /**
      * @Route("/new", name="deputies_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -119,6 +124,8 @@ class DeputiesController extends AbstractController
 
     /**
      * @Route("/{id}", name="deputies_show", methods={"GET"})
+     * @param Deputies $deputy
+     * @return Response
      */
     public function show(Deputies $deputy): Response
     {
@@ -130,6 +137,9 @@ class DeputiesController extends AbstractController
     /**
      * @Route("/{id}/edit", name="deputies_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @param Deputies $deputy
+     * @return Response
      */
     public function edit(Request $request, Deputies $deputy): Response
     {
@@ -151,6 +161,9 @@ class DeputiesController extends AbstractController
     /**
      * @Route("/{id}", name="deputies_delete", methods={"POST"})
      * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @param Deputies $deputy
+     * @return Response
      */
     public function delete(Request $request, Deputies $deputy): Response
     {
