@@ -12,6 +12,10 @@
                 <td>{{ vote.id }}</td>
             </tr>
             <tr>
+                <th>Date</th>
+                <td>{{ vote.date ? vote.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
                 <th>Hour</th>
                 <td>{{ vote.hour ? vote.hour|date('H:i:s') : '' }}</td>
             </tr>
