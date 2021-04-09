@@ -20,7 +20,7 @@ class TimetableController extends AbstractController
 {
     /**
      * @param TimetableRepository $timetableRepository
-     * @Route("/parser", name="deputies_parser", methods={"GET"})
+     * @Route("/parser", name="timetable_parser", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
     public function parserTimetable(TimetableRepository $timetableRepository)
