@@ -9,9 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/government_meetings_date")
+ * @IsGranted("ROLE_USER")
  */
 class GovernmentMeetingsDateController extends AbstractController
 {
@@ -27,6 +29,7 @@ class GovernmentMeetingsDateController extends AbstractController
 
     /**
      * @Route("/new", name="government_meetings_date_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -60,6 +63,7 @@ class GovernmentMeetingsDateController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="government_meetings_date_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, GovernmentMeetingsDate $governmentMeetingsDate): Response
     {
@@ -80,6 +84,7 @@ class GovernmentMeetingsDateController extends AbstractController
 
     /**
      * @Route("/{id}", name="government_meetings_date_delete", methods={"POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, GovernmentMeetingsDate $governmentMeetingsDate): Response
     {
