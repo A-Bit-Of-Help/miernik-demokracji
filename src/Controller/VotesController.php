@@ -25,7 +25,7 @@ class VotesController extends AbstractController
      * @Route("/parser", name="votes_parser", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function parserVotes(VotesRepository $votesRepository, TimetableRepository $timetableRepository)
+    public function parserVotes(VotesRepository $votesRepository, TimetableRepository $timetableRepository): Response
     {
         set_time_limit(0);
         $em = $this->getDoctrine()->getManager();
