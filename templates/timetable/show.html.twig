@@ -17,7 +17,11 @@
             </tr>
             <tr>
                 <th>Date</th>
-                <td>{{ timetable.date ? timetable.date|date('Y-m-d') : '' }}</td>
+                <td>
+                    {% for governmentMeeting in timetable.governmentMeetings %}
+                        {{ governmentMeeting.date ? governmentMeeting.date|date('Y-m-d') : '' }}
+                    {% endfor %}
+                </td>
             </tr>
             <tr>
                 <th>StartTime</th>

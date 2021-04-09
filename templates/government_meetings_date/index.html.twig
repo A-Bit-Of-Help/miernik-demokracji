@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GovernmentMeetingsDate index{% endblock %}
+
+{% block body %}
+    <h1>GovernmentMeetingsDate index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for government_meetings_date in government_meetings_dates %}
+            <tr>
+                <td>{{ government_meetings_date.id }}</td>
+                <td>{{ government_meetings_date.date ? government_meetings_date.date|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('government_meetings_date_show', {'id': government_meetings_date.id}) }}">
+                        <span class="badge badge-info">show</span>
+                    </a>
+                    <a href="{{ path('government_meetings_date_edit', {'id': government_meetings_date.id}) }}">
+                        <span class="badge badge-info">edit</span>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" href="{{ path('government_meetings_date_new') }}">Create new</a>
+{% endblock %}

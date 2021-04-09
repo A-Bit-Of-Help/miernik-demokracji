@@ -27,11 +27,6 @@ class Timetable
     private $number;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
-     */
-    private $date;
-
-    /**
      * @ORM\Column(type="time", nullable=true)
      */
     private $startTime;
@@ -56,9 +51,15 @@ class Timetable
      */
     private $title;
 
+    /**
+     * @ORM\OneToMany(targetEntity=GovernmentMeetingsDate::class, mappedBy="GovernmentMeeting")
+     */
+    private $governmentMeetings;
+
     public function __construct()
     {
         $this->votes = new ArrayCollection();
+        $this->governmentMeetings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -74,18 +75,6 @@ class Timetable
     public function setNumber(int $number): self
     {
         $this->number = $number;
-
-        return $this;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
 
         return $this;
     }
@@ -164,6 +153,36 @@ class Timetable
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|GovernmentMeetingsDate[]
+     */
+    public function getGovernmentMeetings(): Collection
+    {
+        return $this->governmentMeetings;
+    }
+
+    public function addYe(GovernmentMeetingsDate $ye): self
+    {
+        if (!$this->governmentMeetings->contains($ye)) {
+            $this->governmentMeetings[] = $ye;
+            $ye->setGovernmentMeeting($this);
+        }
+
+        return $this;
+    }
+
+    public function removeYe(GovernmentMeetingsDate $ye): self
+    {
+        if ($this->governmentMeetings->removeElement($ye)) {
+            // set the owning side to null (unless already changed)
+            if ($ye->getGovernmentMeeting() === $this) {
+                $ye->setGovernmentMeeting(null);
+            }
+        }
 
         return $this;
     }

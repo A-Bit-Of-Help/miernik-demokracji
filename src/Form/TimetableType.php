@@ -2,8 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\GovernmentMeetingsDate;
 use App\Entity\Timetable;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,14 +25,6 @@ class TimetableType extends AbstractType
                 ]
             ])
             ->add('title', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control'
-                ]
-            ])
-            ->add('date', DateType::class, [
-                'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
-                'required' => false,
                 'attr' => [
                     'class' => 'form-control'
                 ]
