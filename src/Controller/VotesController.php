@@ -62,6 +62,8 @@ class VotesController extends AbstractController
 
     /**
      * @Route("/", name="votes_index", methods={"GET"})
+     * @param VotesRepository $votesRepository
+     * @return Response
      */
     public function index(VotesRepository $votesRepository): Response
     {
@@ -73,6 +75,8 @@ class VotesController extends AbstractController
     /**
      * @Route("/new", name="votes_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -96,6 +100,8 @@ class VotesController extends AbstractController
 
     /**
      * @Route("/{id}", name="votes_show", methods={"GET"})
+     * @param Votes $vote
+     * @return Response
      */
     public function show(Votes $vote): Response
     {
@@ -107,6 +113,9 @@ class VotesController extends AbstractController
     /**
      * @Route("/{id}/edit", name="votes_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @param Votes $vote
+     * @return Response
      */
     public function edit(Request $request, Votes $vote): Response
     {
@@ -128,6 +137,9 @@ class VotesController extends AbstractController
     /**
      * @Route("/{id}", name="votes_delete", methods={"POST"})
      * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @param Votes $vote
+     * @return Response
      */
     public function delete(Request $request, Votes $vote): Response
     {
