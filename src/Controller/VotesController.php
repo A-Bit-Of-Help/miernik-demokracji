@@ -57,6 +57,7 @@ class VotesController extends AbstractController
                         $votes->setHour($hour);
                         $votes->setTitle($title);
                         $votes->setAgendaItem($agendaItem);
+                        $votes->setLink('http://sejm.gov.pl/Sejm9.nsf/' . $hrefDate->href);
                         $em->persist($votes);
                     }
                 }
