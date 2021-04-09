@@ -24,7 +24,11 @@
                 <td>{{ timetable.number }}</td>
                 <td>
                     {% for governmentMeeting in timetable.governmentMeetings %}
-                        <span class="badge-pill badge-primary">{{ governmentMeeting.date ? governmentMeeting.date|date('Y-m-d') : '' }}</span>
+                        <a href="{{ path('votes_date', {'date' : governmentMeeting.date|date('Y-m-d')}) }}">
+                            <span class="badge-pill badge-primary">
+                                {{ governmentMeeting.date ? governmentMeeting.date|date('Y-m-d') : '' }}
+                            </span>
+                        </a>
                     {% endfor %}
                 </td>
                 <td>{{ timetable.startTime ? timetable.startTime|date('H:i:s') : '' }}</td>

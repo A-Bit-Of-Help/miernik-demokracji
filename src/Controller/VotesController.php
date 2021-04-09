@@ -81,6 +81,22 @@ class VotesController extends AbstractController
     }
 
     /**
+     * @Route("/date/{date}", name="votes_date", methods={"GET"})
+     * @param VotesRepository $votesRepository
+     * @param $date
+     * @throws Exception
+     * @return Response
+     */
+    public function votesOnDate(VotesRepository $votesRepository, $date): Response
+    {
+        $date = new DateTime($date);
+        $votes = $votesRepository->findBy(['date' => $date]);
+        return $this->render('votes/index.html.twig', [
+            'votes' => $votes,
+        ]);
+    }
+
+    /**
      * @Route("/new", name="votes_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      * @param Request $request
