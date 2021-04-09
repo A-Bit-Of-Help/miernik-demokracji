@@ -61,6 +61,11 @@ class Votes
      */
     private $link;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $parser;
+
     public function __construct()
     {
         $this->documents = new ArrayCollection();
@@ -200,6 +205,18 @@ class Votes
     public function setLink(string $link): self
     {
         $this->link = $link;
+
+        return $this;
+    }
+
+    public function getParser(): ?bool
+    {
+        return $this->parser;
+    }
+
+    public function setParser(bool $parser): self
+    {
+        $this->parser = $parser;
 
         return $this;
     }
