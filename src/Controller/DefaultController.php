@@ -30,4 +30,15 @@ class DefaultController extends AbstractController
         return $this->render('security/right_permission.html.twig', [
         ]);
     }
+
+    /**
+     * @Route("/parser", name="parser_index")
+     * @param Request $request
+     * @return Response
+     */
+    public function parserSite(Request $request): Response
+    {
+        return $this->render('security/right_permission.html.twig', [
+        ]);
+    }
 }

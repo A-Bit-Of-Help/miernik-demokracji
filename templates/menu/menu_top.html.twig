@@ -16,6 +16,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href={{ path('timetable_index') }}>Terminarz</a>
                 </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item">
+                    <a class="nav-link" href={{ path('parser_index') }}>Parser</a>
+                </li>
+                {% endif %}
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
