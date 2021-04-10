@@ -56,6 +56,16 @@ class Deputies
      */
     private $votesResults;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $details;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $active;
+
     public function __construct()
     {
         $this->votesResults = new ArrayCollection();
@@ -164,6 +174,30 @@ class Deputies
                 $votesResult->setDeputies(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDetails(): ?string
+    {
+        return $this->details;
+    }
+
+    public function setDetails(?string $details): self
+    {
+        $this->details = $details;
+
+        return $this;
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
 
         return $this;
     }

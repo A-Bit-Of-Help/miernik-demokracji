@@ -22,19 +22,40 @@ class DeputiesController extends AbstractController
     /**
      * @Route("/parser", name="deputies_parser", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
-     * @param GovernmentPartiesRepository $governmentPartiesRepository
      * @param DeputiesRepository $deputiesRepository
      * @return Response
      */
-    public function parserDeputies(GovernmentPartiesRepository $governmentPartiesRepository,
-                                   DeputiesRepository $deputiesRepository
-    ): Response
+    public function parserDeputies(DeputiesRepository $deputiesRepository, GovernmentPartiesRepository $governmentPartiesRepository): Response
+    {
+        $linkArr = [
+            ['http://www.sejm.gov.pl/Sejm9.nsf/poslowie.xsp?type=B', false],
+            ['http://www.sejm.gov.pl/Sejm9.nsf/poslowie.xsp?type=A', true],
+            ['http://www.sejm.gov.pl/Sejm9.nsf/poslowie.xsp?type=N', true]
+        ];
+        foreach ($linkArr as $link){
+            $html = HtmlDomParser::file_get_html($link[0]);
+            $elements = $html->find('.deputies li');
+            $this->parserGetDeputies($elements, $link[1], $governmentPartiesRepository, $deputiesRepository);
+        }
+
+        return $this->redirectToRoute('deputies_index');
+    }
+
+    /**
+     * @param GovernmentPartiesRepository $governmentPartiesRepository
+     * @param DeputiesRepository $deputiesRepository
+     * @param $elements
+     */
+    public function parserGetDeputies($elements, $active, GovernmentPartiesRepository $governmentPartiesRepository,
+                                      DeputiesRepository $deputiesRepository)
     {
         $em = $this->getDoctrine()->getManager();
-        $html = HtmlDomParser::file_get_html('http://www.sejm.gov.pl/Sejm9.nsf/poslowie.xsp?type=A');
-        $elements = $html->find('.deputies li');
+
         foreach ($elements as $e) {
             $name = explode(' ', html_entity_decode($e->findOne('.deputyName')->innerText()));
+            $detail = html_entity_decode($e->findOne('.deputy-box-details')->innerText());
+            $details = str_replace('<br>', '', substr($detail, strpos($detail, '<br>') + 4));
+
             $num = count($name);
             $firstname = $middlename = $surname = null;
 
@@ -74,14 +95,12 @@ class DeputiesController extends AbstractController
             $deputies->setLink($link);
             $deputies->setGovernmentParties($governmentParties);
             $deputies->setPhoto($photo);
+            $deputies->setDetails($details);
+            $deputies->setActive($active);
 
             $em->persist($deputies);
         };
         $em->flush();
-
-        return $this->render('deputies/index.html.twig', [
-            'deputies' => $deputiesRepository->findAll(),
-        ]);
     }
 
     /**
@@ -92,7 +111,7 @@ class DeputiesController extends AbstractController
     public function index(DeputiesRepository $deputiesRepository): Response
     {
         return $this->render('deputies/index.html.twig', [
-            'deputies' => $deputiesRepository->findAll(),
+            'deputies' => $deputiesRepository->findBy(['active' => true]),
         ]);
     }
 
