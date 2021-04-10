@@ -38,7 +38,16 @@ class DefaultController extends AbstractController
      */
     public function parserSite(Request $request): Response
     {
-        return $this->render('security/right_permission.html.twig', [
+        $parsers = [
+            ['name' => 'Deputies', 'path' => 'deputies_parser'],
+            ['name' => 'Parties', 'path' => 'government_parties_parser'],
+            ['name' => 'Timetable', 'path' => 'timetable_parser'],
+            ['name' => 'Government meetings date', 'path' => 'government_meetings_date_parser'],
+            ['name' => 'Votes', 'path' => 'votes_parser'],
+            ['name' => 'Votes result', 'path' => 'votes_result_parser'],
+        ];
+        return $this->render('parser/index.html.twig', [
+            'parsers' => $parsers
         ]);
     }
 }
