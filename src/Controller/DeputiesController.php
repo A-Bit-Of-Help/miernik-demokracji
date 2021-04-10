@@ -23,6 +23,7 @@ class DeputiesController extends AbstractController
      * @Route("/parser", name="deputies_parser", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      * @param DeputiesRepository $deputiesRepository
+     * @param GovernmentPartiesRepository $governmentPartiesRepository
      * @return Response
      */
     public function parserDeputies(DeputiesRepository $deputiesRepository, GovernmentPartiesRepository $governmentPartiesRepository): Response
@@ -42,9 +43,10 @@ class DeputiesController extends AbstractController
     }
 
     /**
+     * @param $elements
+     * @param $active
      * @param GovernmentPartiesRepository $governmentPartiesRepository
      * @param DeputiesRepository $deputiesRepository
-     * @param $elements
      */
     public function parserGetDeputies($elements, $active, GovernmentPartiesRepository $governmentPartiesRepository,
                                       DeputiesRepository $deputiesRepository)
@@ -74,9 +76,11 @@ class DeputiesController extends AbstractController
                     $e->findOne('strong')->innerHtml()
                 )
             );
+            $link = '';
             foreach ($e->find('a') as $a) {
                 $link = 'http://www.sejm.gov.pl' . $a->href;
-            };
+            }
+            $photo = '';
             $html2 = HtmlDomParser::file_get_html($link);
             foreach ($html2->find('img') as $e2) {
                 $photo = $e2->src;
@@ -99,7 +103,7 @@ class DeputiesController extends AbstractController
             $deputies->setActive($active);
 
             $em->persist($deputies);
-        };
+        }
         $em->flush();
     }
 
