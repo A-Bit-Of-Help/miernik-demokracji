@@ -82,3 +82,16 @@ government_parties:
     title: Utwórz nową partię
     button:
       back: Lista wszystkich partii
+  show:
+    site:
+      title: Partia
+    title: Opis partii i lista jej posłów
+    table:
+      name: Nazwa partii
+      abbreviation: Skrót
+      logo: Logo
+    button:
+      back: Wykaz wszystkich partii
+      edit: Edycja partii
+    deputies:
+      title: Lista posłów partii
