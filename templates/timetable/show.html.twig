@@ -3,41 +3,7 @@
 {% block title %}{% trans %}timetable.show.site.title{% endtrans %} {{ timetable.number }}{% endblock %}
 
 {% block body %}
-    <style>
-        .card {
-            max-width: 600px;
-            min-width: 380px;
-            padding: 6px 6px;
-        }
-    </style>
-    <h1>{{ timetable.title }}</h1>
-    <h3>{% trans %}timetable.show.term{% endtrans %} {{ timetable.term }}</h3>
-    <a href={{ timetable.link }}>{% trans %}timetable.show.link.gov{% endtrans %}</a>
-    <div class="d-flex card-group justify-content-center">
-        {% for governmentMeeting in timetable.governmentMeetings %}
-            <div class="card ">
-                <div class="card-horizontal">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ governmentMeeting.date ? governmentMeeting.date|date('Y-m-d') : '' }}</h4>
-                        {% set voteNumber = 0 %}
-                        {% for vote in  governmentMeeting.governmentMeeting.votes %}
-                            {% if vote.date == governmentMeeting.date %}
-                                {% set voteNumber = voteNumber + 1 %}
-                            {% endif %}
-                        {% endfor %}
-                        <p>{% trans %}timetable.show.votes.number{% endtrans %}: {{ voteNumber }}</p>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <a href="{{ path('votes_date', {'date' : governmentMeeting.date|date('Y-m-d')}) }}">
-                        <span class="badge badge-info">
-                            {% trans %}timetable.show.link.votes{% endtrans %}
-                        </span>
-                    </a>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+    {% include('timetable/show_detail.html.twig') %}
 
     <a class="btn btn-primary" href="{{ path('timetable_index') }}">
         {% trans %}timetable.show.button.back{% endtrans %}
