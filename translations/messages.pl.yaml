@@ -100,3 +100,13 @@ registration:
     form:
       title: Formularz rejestracji użytkownika
       register: Utwórz
+security:
+  login:
+    logged: Zalogowany jako
+    button:
+      logout: Wyloguj
+      login: Zaloguj
+    title: Formularz logowania
+    form:
+      username: Nazwa użytkownika
+      password: Hasło
