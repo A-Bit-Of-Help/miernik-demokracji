@@ -25,3 +25,9 @@ deputies:
     title: Wykaz posłów
     button:
       new: Dodaj posła
+  list:
+    link:
+      gov: Strona rządowa
+    button:
+      show: Szczegóły
+      edit: Edytuj
