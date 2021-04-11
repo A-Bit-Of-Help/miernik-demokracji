@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Deputies{% endblock %}
+{% block title %}{% trans %}deputies.new.site.title{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Create new Deputies</h1>
+    <h1>{% trans %}deputies.new.title{% endtrans %}</h1>
 
     {{ include('deputies/_form.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('deputies_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('deputies_index') }}">
+        {% trans %}deputies.new.button.back{% endtrans %}
+    </a>
 {% endblock %}

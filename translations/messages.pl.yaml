@@ -31,3 +31,9 @@ deputies:
     button:
       show: Szczegóły
       edit: Edytuj
+  new:
+    site:
+      title: Dodawanie posła
+    title: Utwórz nowego posła
+    button:
+      back: Lista wszystkich posłów
