@@ -166,3 +166,7 @@ parser:
     button:
       run: Uruchom
       list: Wykaz danych
+government_meetings_date:
+  delete:
+    confirm: Na pewno chcesz usunąć dzień głosowań?
+    button: Usuń
