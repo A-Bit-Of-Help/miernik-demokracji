@@ -60,3 +60,19 @@ government_parties:
     title: Edytuj partię
     button:
       back: Lista wszystkich partii
+  index:
+    site:
+      title: Wykaz partii
+    title: Lista partii
+    table:
+      id: Lp.
+      name: Nazwa
+      abbreviation: Skrót
+      logo: Logo
+      actions: Akcje
+      no_records: brak partii
+      button:
+        show: Szczegóły
+        edit: Edycja
+    button:
+      new: Utwórz partię
