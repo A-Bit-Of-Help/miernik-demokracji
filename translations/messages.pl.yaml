@@ -95,3 +95,8 @@ government_parties:
       edit: Edycja partii
     deputies:
       title: Lista posłów partii
+registration:
+  index:
+    form:
+      title: Formularz rejestracji użytkownika
+      register: Utwórz
