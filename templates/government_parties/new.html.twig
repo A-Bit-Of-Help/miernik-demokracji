@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New GovernmentParties{% endblock %}
+{% block title %}
+    {% trans %}government_parties.new.site.title{% endtrans %}
+{% endblock %}
 
 {% block body %}
-    <h1>Create new GovernmentParties</h1>
+    <h1>
+        {% trans %}government_parties.new.title{% endtrans %}
+    </h1>
 
     {{ include('government_parties/_form.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('government_parties_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('government_parties_index') }}">
+        {% trans %}government_parties.new.button.back{% endtrans %}
+    </a>
 {% endblock %}

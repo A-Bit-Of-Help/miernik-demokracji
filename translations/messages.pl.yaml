@@ -76,3 +76,9 @@ government_parties:
         edit: Edycja
     button:
       new: Utwórz partię
+  new:
+    site:
+      title: Tworzenie partii
+    title: Utwórz nową partię
+    button:
+      back: Lista wszystkich partii
