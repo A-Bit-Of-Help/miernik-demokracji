@@ -15,55 +15,57 @@
         }
     </style>
     <div class="d-flex card-group justify-content-center">
-            <div class="card ">
-                <div class="card-horizontal">
-                    <div class="img-square-wrapper">
-                        <img class="" src="{{ deputy.photo }}" alt="Deputies photo">
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">{{ deputy.firstname }} {{ deputy.middlename }} {{ deputy.surname }}</h4>
-                        <p>{{ deputy.details }}</p>
-                    </div>
-                    <div class="img-square-wrapper">
-                        <img class="" src="{{ deputy.governmentParties.logo }}" alt="Government parties logo"
-                             height="53">
-                    </div>
+        <div class="card ">
+            <div class="card-horizontal">
+                <div class="img-square-wrapper">
+                    <img class="" src="{{ deputy.photo }}" alt="Deputies photo">
                 </div>
-                <div class="card-footer">
-                    <a href="{{ deputy.link }}">
+                <div class="card-body">
+                    <h4 class="card-title">{{ deputy.firstname }} {{ deputy.middlename }} {{ deputy.surname }}</h4>
+                    <p>{{ deputy.details }}</p>
+                </div>
+                <div class="img-square-wrapper">
+                    <img class="" src="{{ deputy.governmentParties.logo }}" alt="Government parties logo"
+                         height="53">
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="{{ deputy.link }}">
                         <span class="badge badge-info">
                             {% trans %}deputies.show.link.gov{% endtrans %}
                         </span>
-                    </a>
-                    {% set absent = 0 %}
-                    {% set abstained = 0 %}
-                    {% for vote in deputy.votesResults %}
-                        {% if vote.voteResult == 'Nieobecny' %}
-                            {% set absent = absent+1 %}
-                        {% endif %}
-                        {% if vote.voteResult == 'Wstrzymał się' %}
-                            {% set abstained = abstained+1 %}
-                        {% endif %}
-                    {% endfor %}
-                    <span class="badge badge-primary">
+                </a>
+                {% set absent = 0 %}
+                {% set abstained = 0 %}
+                {% for vote in deputy.votesResults %}
+                    {% if vote.voteResult == 'Nieobecny' %}
+                        {% set absent = absent+1 %}
+                    {% endif %}
+                    {% if vote.voteResult == 'Wstrzymał się' %}
+                        {% set abstained = abstained+1 %}
+                    {% endif %}
+                {% endfor %}
+                <span class="badge badge-primary">
                         {% trans %}deputies.show.vote.all{% endtrans %}: {{ deputy.votesResults | length }}
                     </span>
-                    <span class="badge badge-dark">
+                <span class="badge badge-dark">
                         {% trans %}deputies.show.vote.absent{% endtrans %}: {{ absent }} ({{ (absent / deputy.votesResults | length * 100) | round(2) }}%)
                     </span>
-                    <span class="badge badge-danger">
+                <span class="badge badge-danger">
                         {% trans %}deputies.show.vote.abstained{% endtrans %}: {{ abstained }} ({{ (abstained / deputy.votesResults | length * 100) | round(2) }}%)
                     </span>
-                </div>
             </div>
+        </div>
     </div>
 
     <a class="btn btn-primary" href="{{ path('deputies_index') }}">
         {% trans %}deputies.show.button.back{% endtrans %}
     </a>
-    <a class="btn btn-primary" href="{{ path('deputies_edit', {'id': deputy.id}) }}">
-        {% trans %}deputies.show.button.edit{% endtrans %}
-    </a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-primary" href="{{ path('deputies_edit', {'id': deputy.id}) }}">
+            {% trans %}deputies.show.button.edit{% endtrans %}
+        </a>
 
-    {{ include('deputies/_delete_form.html.twig') }}
+        {{ include('deputies/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}
