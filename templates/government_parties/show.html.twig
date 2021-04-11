@@ -9,30 +9,30 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>{% trans %}government_parties.show.table.name{% endtrans %}</th>
-                <td>{{ government_party.name }}</td>
-            </tr>
-            <tr>
-                <th>{% trans %}government_parties.show.table.abbreviation{% endtrans %}</th>
-                <td>{{ government_party.abbreviation }}</td>
-            </tr>
-            <tr>
-                <th>{% trans %}government_parties.show.table.logo{% endtrans %}</th>
-                <td><img src="{{ government_party.logo }}" height="53px"/></td>
-            </tr>
+        <tr>
+            <th>{% trans %}government_parties.show.table.name{% endtrans %}</th>
+            <td>{{ government_party.name }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}government_parties.show.table.abbreviation{% endtrans %}</th>
+            <td>{{ government_party.abbreviation }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}government_parties.show.table.logo{% endtrans %}</th>
+            <td><img src="{{ government_party.logo }}" height="53px"/></td>
+        </tr>
         </tbody>
     </table>
     <a class="btn btn-primary" href="{{ path('government_parties_index') }}">
         {% trans %}government_parties.show.button.back{% endtrans %}
     </a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-primary" href="{{ path('government_parties_edit', {'id': government_party.id}) }}">
+            {% trans %}government_parties.show.button.edit{% endtrans %}
+        </a>
 
-    <a class="btn btn-primary" href="{{ path('government_parties_edit', {'id': government_party.id}) }}">
-        {% trans %}government_parties.show.button.edit{% endtrans %}
-    </a>
-
-    {{ include('government_parties/_delete_form.html.twig') }}
-
+        {{ include('government_parties/_delete_form.html.twig') }}
+    {% endif %}
     <h2>{% trans %}government_parties.show.deputies.title{% endtrans %}</h2>
 
     {% include 'deputies/list.html.twig' %}
