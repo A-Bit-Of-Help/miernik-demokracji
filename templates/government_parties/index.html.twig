@@ -23,7 +23,7 @@
                 <td>{{ government_party.id }}</td>
                 <td>{{ government_party.name }}</td>
                 <td>{{ government_party.abbreviation }}</td>
-                <td><img src="{{ government_party.logo }}" height="53px"/></td>
+                <td><img src="{{ government_party.logo }}" height="53px" alt="Government parties logo"/></td>
                 <td>
                     <a href="{{ path('government_parties_show', {'id': government_party.id}) }}">
                         <span class="badge badge-info">
