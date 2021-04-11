@@ -177,3 +177,17 @@ government_meetings_date:
     button:
       back_meeting: Wróć do posiedzenia
       back: Wróć do listy dni
+  index:
+    site:
+      title: Wykaz dni głosowań
+    title: Lista dni
+    table:
+      id: Index
+      date: Data
+      actions: Akcje
+      no_found: Brak dni do wyświetlenia
+      button:
+        show: Szczegóły
+        edit: Edycja
+    button:
+      new: Dodaj datę posiedzenia
