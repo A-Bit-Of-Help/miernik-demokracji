@@ -9,13 +9,13 @@
 
     <table class="table">
         <thead class="thead-light">
-            <tr>
-                <th>{% trans %}government_parties.index.table.id{% endtrans %}</th>
-                <th>{% trans %}government_parties.index.table.name{% endtrans %}</th>
-                <th>{% trans %}government_parties.index.table.abbreviation{% endtrans %}</th>
-                <th>{% trans %}government_parties.index.table.logo{% endtrans %}</th>
-                <th>{% trans %}government_parties.index.table.actions{% endtrans %}</th>
-            </tr>
+        <tr>
+            <th>{% trans %}government_parties.index.table.id{% endtrans %}</th>
+            <th>{% trans %}government_parties.index.table.name{% endtrans %}</th>
+            <th>{% trans %}government_parties.index.table.abbreviation{% endtrans %}</th>
+            <th>{% trans %}government_parties.index.table.logo{% endtrans %}</th>
+            <th>{% trans %}government_parties.index.table.actions{% endtrans %}</th>
+        </tr>
         </thead>
         <tbody>
         {% for government_party in government_parties %}
@@ -30,11 +30,13 @@
                             {% trans %}government_parties.index.table.button.show{% endtrans %}
                         </span>
                     </a>
-                    <a href="{{ path('government_parties_edit', {'id': government_party.id}) }}">
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('government_parties_edit', {'id': government_party.id}) }}">
                         <span class="badge badge-info">
                             {% trans %}government_parties.index.table.button.edit{% endtrans %}
                         </span>
-                    </a>
+                        </a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -46,8 +48,9 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a class="btn btn-success" href="{{ path('government_parties_new') }}">
-        {% trans %}government_parties.index.button.new{% endtrans %}
-    </a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-success" href="{{ path('government_parties_new') }}">
+            {% trans %}government_parties.index.button.new{% endtrans %}
+        </a>
+    {% endif %}
 {% endblock %}
