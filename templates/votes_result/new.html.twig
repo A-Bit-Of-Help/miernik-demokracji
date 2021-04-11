@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New VotesResult{% endblock %}
+{% block title %}{% trans %}votes_result.new.site.title{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Create new VotesResult</h1>
+    <h1>{% trans %}votes_result.new.title{% endtrans %}</h1>
 
     {{ include('votes_result/_form.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('votes_result_index') }}">back to list</a>
 {% endblock %}

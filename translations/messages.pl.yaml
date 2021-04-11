@@ -271,3 +271,7 @@ votes_result:
   list:
     table:
       logo: Logo partii
+  new:
+    site:
+      title: Nowy głos
+    title: Dodaj głos
