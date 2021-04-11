@@ -191,3 +191,9 @@ government_meetings_date:
         edit: Edycja
     button:
       new: Dodaj datę posiedzenia
+  new:
+    site:
+      title: Nowy dzień
+    title: Utwórz nowy dzień posiedzenia sejmu
+    button:
+      back: Wykaz dni posiedzeń sejmu

@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New GovernmentMeetingsDate{% endblock %}
+{% block title %}{% trans %}government_meetings_date.new.site.title{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Create new GovernmentMeetingsDate</h1>
+    <h1>{% trans %}government_meetings_date.new.title{% endtrans %}</h1>
 
     {{ include('government_meetings_date/_form.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('government_meetings_date_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('government_meetings_date_index') }}">
+        {% trans %}government_meetings_date.new.button.back{% endtrans %}
+    </a>
 {% endblock %}
