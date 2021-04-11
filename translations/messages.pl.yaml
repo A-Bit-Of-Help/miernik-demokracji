@@ -113,3 +113,7 @@ security:
   right_permission:
     title: Brak uprawnień
     description: Nie posiadacz uprawnień pozwalających wejść na stronę.
+timetable:
+  delete:
+    confirm: Jesteś pewien, że chcesz usunąć to posiedzenie?
+    button: Usuń
