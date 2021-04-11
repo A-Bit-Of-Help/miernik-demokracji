@@ -170,3 +170,10 @@ government_meetings_date:
   delete:
     confirm: Na pewno chcesz usunąć dzień głosowań?
     button: Usuń
+  edit:
+    site:
+      title: Edycja dnia
+    title: Edytuj dane dnia
+    button:
+      back_meeting: Wróć do posiedzenia
+      back: Wróć do listy dni

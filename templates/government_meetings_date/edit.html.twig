@@ -1,13 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit GovernmentMeetingsDate{% endblock %}
+{% block title %}{% trans %}government_meetings_date.edit.site.title{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Edit GovernmentMeetingsDate</h1>
+    <h1>{% trans %}government_meetings_date.edit.title{% endtrans %}</h1>
 
     {{ include('government_meetings_date/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a class="btn btn-primary" href="{{ path('government_meetings_date_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('timetable_show', {'id': government_meetings_date.GovernmentMeeting.id }) }}">
+        {% trans %}government_meetings_date.edit.button.back_meeting{% endtrans %}
+    </a>
+
+    <a class="btn btn-primary" href="{{ path('government_meetings_date_index') }}">
+        {% trans %}government_meetings_date.edit.button.back{% endtrans %}
+    </a>
 
     {{ include('government_meetings_date/_delete_form.html.twig') }}
 {% endblock %}
