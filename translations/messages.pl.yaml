@@ -9,6 +9,9 @@ menu:
   search: Szukaj
   placeholder:
     search: Wyszukaj
+  logout: Wyloguj
+  login: Zaloguj
+  registration: Nowy użytkownik
 deputies:
   delete:
     confirm: Jesteś pewien, że chcesz usunąć tego posła?
