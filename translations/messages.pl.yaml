@@ -287,3 +287,9 @@ documents:
   delete:
     confirm: Na pewno usunąć dokument?
     button: Usuń
+  edit:
+    site:
+      title: Edycja dokumentu
+    title: Edytuj dokument
+    button:
+      back: Wykaz dokumentów
