@@ -145,4 +145,16 @@ timetable:
       title: Tworzenie posedzenia sejmu
     title: Dodaj nowe posiedzenie
     button:
-      back: Wykaz posiedzeń rządu
+      back: Wykaz posiedzeń sejmu
+  show:
+    site:
+      title: Szczegóły posiedzenia nr
+    link:
+      gov: Strona rządowa
+      votes: Wykaz głosowań
+    term: Kadencja nr
+    votes:
+      number: Liczba głosowań
+    button:
+      back: Wykaz posiedzeń sejmu
+      edit: Edycja posiedzenia
