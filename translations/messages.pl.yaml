@@ -1,0 +1,9 @@
+menu:
+  title: Miernik demokracji
+  parties: Partie
+  deputies: Posłowie
+  timetable: Terminarz
+  parsers: Parsery
+  search: Szukaj
+  placeholder:
+    search: Wyszukaj

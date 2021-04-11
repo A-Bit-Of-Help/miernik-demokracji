@@ -2,29 +2,29 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="#">
             <img src="{{ asset('images/logo.jpg') }}" width="30" height="30" class="d-inline-block align-top" alt="" />
-            Miernik demokracji
+            {% trans %}menu.title{% endtrans %}
         </a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href={{ path('government_parties_index') }}>Partie</a>
+                    <a class="nav-link" href={{ path('government_parties_index') }}>{% trans %}menu.parties{% endtrans %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href={{ path('deputies_index') }}>Posłowie</a>
+                    <a class="nav-link" href={{ path('deputies_index') }}>{% trans %}menu.deputies{% endtrans %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href={{ path('timetable_index') }}>Terminarz</a>
+                    <a class="nav-link" href={{ path('timetable_index') }}>{% trans %}menu.timetable{% endtrans %}</a>
                 </li>
                 {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
-                    <a class="nav-link" href={{ path('parser_index') }}>Parser</a>
+                    <a class="nav-link" href={{ path('parser_index') }}>{% trans %}menu.parsers{% endtrans %}</a>
                 </li>
                 {% endif %}
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="search" placeholder="{% trans %}menu.placeholder.search{% endtrans %}" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{% trans %}menu.search{% endtrans %}</button>
             </form>
         </div>
     </nav>
