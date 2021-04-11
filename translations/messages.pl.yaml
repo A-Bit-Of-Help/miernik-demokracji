@@ -37,3 +37,16 @@ deputies:
     title: Utwórz nowego posła
     button:
       back: Lista wszystkich posłów
+  show:
+    site:
+      title: Poseł
+    title: Szczegóły
+    vote:
+      all: Ilość głosowań
+      absent: Nieobecny
+      abstained: Wstrzymał się
+    link:
+      gov: Strona rządowa
+    button:
+      back: Lista wszystkich posłów
+      edit: Edytuj posła
