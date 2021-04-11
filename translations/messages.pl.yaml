@@ -16,7 +16,12 @@ deputies:
   edit:
     site:
       title: Edycja posła
-    title:
-      Edytuj posła
+    title: Edytuj posła
     button:
       back: Lista wszystkich posłów
+  index:
+    site:
+      title: Lista posłów
+    title: Wykaz posłów
+    button:
+      new: Dodaj posła

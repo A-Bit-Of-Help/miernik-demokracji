@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Deputies index{% endblock %}
+{% block title %}{% trans %}deputies.index.site.title{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Deputies index</h1>
+    <h1>{% trans %}deputies.index.title{% endtrans %}</h1>
+    <a class="btn btn-success" href="{{ path('deputies_new') }}">{% trans %}deputies.index.button.new{% endtrans %}</a>
 
     {% include 'deputies/list.html.twig' %}
-    <a class="btn btn-success" href="{{ path('deputies_new') }}">Create new</a>
 {% endblock %}
