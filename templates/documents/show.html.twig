@@ -1,34 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Documents{% endblock %}
+{% block title %}{% trans %}documents.show.site.title{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Documents</h1>
+    <h1>{% trans %}documents.show.title{% endtrans %}</h1>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ document.id }}</td>
-            </tr>
-            <tr>
-                <th>Number</th>
-                <td>{{ document.number }}</td>
-            </tr>
-            <tr>
-                <th>Path</th>
-                <td>{{ document.path }}</td>
-            </tr>
-            <tr>
-                <th>GovPath</th>
-                <td>{{ document.govPath }}</td>
-            </tr>
+        <tr>
+            <th>{% trans %}documents.show.table.id{% endtrans %}</th>
+            <td>{{ document.id }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}documents.show.table.number{% endtrans %}</th>
+            <td>{{ document.number }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}documents.show.table.path{% endtrans %}</th>
+            <td>{{ document.path }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}documents.show.table.gov_path{% endtrans %}</th>
+            <td>{{ document.govPath }}</td>
+        </tr>
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ path('documents_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('documents_index') }}">
+        {% trans %}documents.show.button.back{% endtrans %}
+    </a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-primary" href="{{ path('documents_edit', {'id': document.id}) }}">
+            {% trans %}documents.show.button.edit{% endtrans %}
+        </a>
 
-    <a class="btn btn-primary" href="{{ path('documents_edit', {'id': document.id}) }}">edit</a>
-
-    {{ include('documents/_delete_form.html.twig') }}
+        {{ include('documents/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}
