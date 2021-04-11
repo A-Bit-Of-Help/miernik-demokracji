@@ -158,3 +158,11 @@ timetable:
     button:
       back: Wykaz posiedzeń sejmu
       edit: Edycja posiedzenia
+parser:
+  index:
+    site:
+      title: Pobieranie danych
+    title: Lista parserów
+    button:
+      run: Uruchom
+      list: Wykaz danych

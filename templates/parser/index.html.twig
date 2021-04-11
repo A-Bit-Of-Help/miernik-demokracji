@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Deputies index{% endblock %}
+{% block title %}{% trans %}parser.index.site.title{% endtrans %}{% endblock %}
 
 {% block body %}
     <style>
@@ -10,30 +10,21 @@
             padding: 6px 6px;
         }
     </style>
-    <h1>Parser index</h1>
+    <h1>{% trans %}parser.index.title{% endtrans %}</h1>
 
     <div class="d-flex card-group justify-content-center">
         {% for parser in parsers %}
             <div class="card ">
                 <div class="card-horizontal">
-{#                    <div class="img-square-wrapper">#}
-{#                        <img class="" src="{{ deputy.photo }}" alt="Deputies photo">#}
-{#                    </div>#}
                     <div class="card-body">
                         <h4 class="card-title">{{ parser['name'] }}</h4>
-{#                        <p>{{ deputy.details }}</p>#}
                     </div>
-{#                    <div class="img-square-wrapper">#}
-{#                        <img class="" src="{{ deputy.governmentParties.logo }}" alt="Government parties logo"#}
-{#                             height="53">#}
-{#                    </div>#}
                 </div>
                 <div class="card-footer">
-                    <a href="{{ path(parser['path'])}}"><span class="badge badge-danger">run</span></a>
-{#                    <a href="{{ path('deputies_show', {'id': deputy.id}) }}"><span#}
-{#                                class="badge badge-info">show</span></a>#}
-{#                    <a href="{{ path('deputies_edit', {'id': deputy.id}) }}"><span#}
-{#                                class="badge badge-info">edit</span></a>#}
+                    <a href="{{ path(parser['path'])}}"><span class="badge badge-danger">{% trans %}parser.index.button.run{% endtrans %}</span></a>
+                    {% if parser['list'] %}
+                    <a href="{{ path(parser['list'])}}"><span class="badge badge-info">{% trans %}parser.index.button.list{% endtrans %}</span></a>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
