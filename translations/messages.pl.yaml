@@ -268,3 +268,6 @@ votes_result:
     votes_number: Ilość oddanych głosów
     button:
       new: Dodaj nowy głos
+  list:
+    table:
+      logo: Logo partii

@@ -5,8 +5,7 @@
         <th{% if pagination.isSorted('a.deputies') %} class="sorted"{% endif %}>
             {{ knp_pagination_sortable(pagination, 'Deputeis', 'deputies.surname') }}
         </th>
-        <th>Parties logo</th>
-        <th>Title</th>
+        <th>{% trans %}votes_result.list.table.logo{% endtrans %}</th>
         <th{% if pagination.isSorted('a.voteResult') %} class="sorted"{% endif %}>
             {{ knp_pagination_sortable(pagination, 'Vote result', 'voteResult') }}
         </th>
@@ -20,7 +19,6 @@
                 {{ article.deputies.surname }} {{ article.deputies.middlename }} {{ article.deputies.firstname }}
             </td>
             <td><img src="{{ article.deputies.governmentParties.logo }}" height="20" alt="Government parties logo"/></td>
-            <td>{{ article.vote.title }}</td>
             <td>{{ article.voteResult }}</td>
         </tr>
     {% endfor %}
