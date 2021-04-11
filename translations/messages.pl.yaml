@@ -123,3 +123,20 @@ timetable:
     title: Edytuj posiedzenie sejmu
     button:
       back: Wykaz posiedzeń sejmu
+  index:
+    site:
+      title: Lista posiedzeń sejmu
+    title: Wykaz posiedzeń
+    table:
+      id: Index
+      number: Numer posiedzenia
+      vote_date: Daty głosowań
+      start_time: Godzina
+      link: Strona rządowa
+      term: Kadencja
+      actions: Akcje
+      no_found: Brak posiedzeń
+    button:
+      show: Szczegóły
+      edit: Edycja
+      new: Dodaj posiedzenie

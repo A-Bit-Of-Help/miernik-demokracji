@@ -1,20 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Timetable index{% endblock %}
+{% block title %}{% trans %}timetable.index.site.title{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Timetable index</h1>
-
+    <h1>{% trans %}timetable.index.title{% endtrans %}</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-success" href="{{ path('timetable_new') }}">
+            {% trans %}timetable.index.button.new{% endtrans %}
+        </a>
+    {% endif %}
     <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Number</th>
-            <th>Date votes meeting</th>
-            <th>StartTime</th>
-            <th>Link</th>
-            <th>Term</th>
-            <th>actions</th>
+            <th>{% trans %}timetable.index.table.id{% endtrans %}</th>
+            <th>{% trans %}timetable.index.table.number{% endtrans %}</th>
+            <th>{% trans %}timetable.index.table.vote_date{% endtrans %}</th>
+            <th>{% trans %}timetable.index.table.start_time{% endtrans %}</th>
+            <th>{% trans %}timetable.index.table.link{% endtrans %}</th>
+            <th>{% trans %}timetable.index.table.term{% endtrans %}</th>
+            <th>{% trans %}timetable.index.table.actions{% endtrans %}</th>
         </tr>
         </thead>
         <tbody>
@@ -35,19 +39,26 @@
                 <td><a href={{ timetable.link }}>{{ timetable.title }}</a></td>
                 <td>{{ timetable.term }}</td>
                 <td>
-                    <a href="{{ path('timetable_show', {'id': timetable.id}) }}"><span
-                                class="badge badge-info">show</span></a>
-                    <a href="{{ path('timetable_edit', {'id': timetable.id}) }}"><span
-                                class="badge badge-info">edit</span></a>
+                    <a href="{{ path('timetable_show', {'id': timetable.id}) }}">
+                        <span class="badge badge-info">
+                            {% trans %}timetable.index.button.show{% endtrans %}
+                        </span>
+                    </a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('timetable_edit', {'id': timetable.id}) }}">
+                        <span class="badge badge-info">
+                            {% trans %}timetable.index.button.edit{% endtrans %}
+                        </span>
+                        </a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">{% trans %}timetable.index.table.no_found{% endtrans %}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a class="btn btn-success" href="{{ path('timetable_new') }}">Create new</a>
 {% endblock %}
