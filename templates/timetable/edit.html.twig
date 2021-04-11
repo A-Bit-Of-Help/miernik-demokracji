@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Timetable{% endblock %}
+{% block title %}
+    {% trans %}timetable.edit.site.title{% endtrans %}
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Timetable</h1>
+    <h1>{% trans %}timetable.edit.title{% endtrans %}</h1>
 
     {{ include('timetable/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a class="btn btn-primary" href="{{ path('timetable_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('timetable_index') }}">
+        {% trans %}timetable.edit.button.back{% endtrans %}
+    </a>
 
     {{ include('timetable/_delete_form.html.twig') }}
 {% endblock %}

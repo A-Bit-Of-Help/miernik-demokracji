@@ -117,3 +117,9 @@ timetable:
   delete:
     confirm: Jesteś pewien, że chcesz usunąć to posiedzenie?
     button: Usuń
+  edit:
+    site:
+      title: Edycja posiedzenia sejmu
+    title: Edytuj posiedzenie sejmu
+    button:
+      back: Wykaz posiedzeń sejmu
