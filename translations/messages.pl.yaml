@@ -238,3 +238,16 @@ votes:
     title: Utwórz nowe głosowanie
     button:
       back: Wykaz głosowań
+  show:
+    site:
+      title: Szczegóły głosowania
+    title: Szczegóły głosowania
+    table:
+      id: Index
+      date: Data
+      hour: Godzina
+      title: Tytuł
+      agenda_item: Numer głosowania
+    button:
+      back: Wykaz głosowań
+      edit: Edycja głosowania
