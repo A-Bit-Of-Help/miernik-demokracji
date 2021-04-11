@@ -283,3 +283,7 @@ votes_result:
     button:
       back: Lista oddanych głosów w głosowaniu
       edit: Edytuj
+documents:
+  delete:
+    confirm: Na pewno usunąć dokument?
+    button: Usuń
