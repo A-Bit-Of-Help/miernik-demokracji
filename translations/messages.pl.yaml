@@ -251,3 +251,7 @@ votes:
     button:
       back: Wykaz głosowań
       edit: Edycja głosowania
+votes_result:
+  delete:
+    confirm: Na pewno chcesz usunąć ten resultat głosowania?
+    button: Usuń
