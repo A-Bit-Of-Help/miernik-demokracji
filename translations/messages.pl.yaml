@@ -50,3 +50,7 @@ deputies:
     button:
       back: Lista wszystkich posłów
       edit: Edytuj posła
+government_parties:
+  delete:
+    confirm: Jesteś pewien, że chcesz usunąć tą partię?
+    button: Usuń
