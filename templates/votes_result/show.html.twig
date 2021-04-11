@@ -1,34 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}VotesResult{% endblock %}
+{% block title %}{% trans %}votes_result.show.site.title{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>VotesResult</h1>
+    <h1>{% trans %}votes_result.show.title{% endtrans %}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ votes_result.id }}</td>
-            </tr>
-            <tr>
-                <th>Deputies</th>
-                <td>{{ votes_result.deputies.firstname }} {{ votes_result.deputies.middlename }} {{ votes_result.deputies.surname }}</td>
-            </tr>
-            <tr>
-                <th>Vote title</th>
-                <td>{{ votes_result.vote.title }}</td>
-            </tr>
-            <tr>
-                <th>VoteResult</th>
-                <td>{{ votes_result.voteResult }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <style>
+        .card {
+            min-width: 380px;
+            padding: 6px 6px;
+        }
+    </style>
+    <div class="d-flex card-group justify-content-center">
+        <div class="card ">
+            <div class="card-horizontal">
+                <div class="img-square-wrapper">
+                    <img class="" src="{{ votes_result.deputies.photo }}" alt="Deputies photo">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        {{ votes_result.deputies.firstname }} {{ votes_result.deputies.middlename }} {{ votes_result.deputies.surname }}
+                    </h4>
+                    <p>{{ votes_result.deputies.details }}</p>
+                </div>
+                <div class="img-square-wrapper">
+                    <a href="{{ path('government_parties_show', {'id': votes_result.deputies.governmentParties.id}) }}">
+                        <img class="" src="{{ votes_result.deputies.governmentParties.logo }}"
+                             alt="Government parties logo"
+                             height="53">
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer">
+                {{ votes_result.vote.title }}
+                <h4>{% trans %}votes_result.show.vote_result{% endtrans %}: {{ votes_result.voteResult }}</h4>
+            </div>
+        </div>
+    </div>
 
-    <a class="btn btn-primary" href="{{ path('votes_result_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('votes_result_vote', {'id': votes_result.vote.id}) }}">
+        {% trans %}votes_result.show.button.back{% endtrans %}
+    </a>
+    {% if is_granted("ROLE_ADMIN") %}
+        <a class="btn btn-primary" href="{{ path('votes_result_edit', {'id': votes_result.id}) }}">
+            {% trans %}votes_result.show.button.edit{% endtrans %}
+        </a>
 
-    <a class="btn btn-primary" href="{{ path('votes_result_edit', {'id': votes_result.id}) }}">edit</a>
-
-    {{ include('votes_result/_delete_form.html.twig') }}
+        {{ include('votes_result/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}

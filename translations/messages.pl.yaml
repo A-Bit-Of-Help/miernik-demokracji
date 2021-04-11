@@ -275,3 +275,11 @@ votes_result:
     site:
       title: Nowy głos
     title: Dodaj głos
+  show:
+    site:
+      title: Szczegóły głosu
+    title: Szczegóły głosu
+    vote_result: Oddany głos
+    button:
+      back: Lista oddanych głosów w głosowaniu
+      edit: Edytuj
