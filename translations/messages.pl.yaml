@@ -13,3 +13,10 @@ deputies:
   delete:
     confirm: Jesteś pewien, że chcesz usunąć tego posła?
     button: Usuń
+  edit:
+    site:
+      title: Edycja posła
+    title:
+      Edytuj posła
+    button:
+      back: Lista wszystkich posłów
