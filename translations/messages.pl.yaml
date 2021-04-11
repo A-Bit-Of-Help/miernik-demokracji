@@ -214,3 +214,21 @@ votes:
     title: Edytuj głosowanie
     button:
       back: Wykaz głosowań
+  index:
+    site:
+      title: Wykaz głosowań
+    title: Lista głosowań
+    table:
+      id: Indeks
+      date: Data
+      term: Numer posiedzenia
+      hour: Godzina
+      title: Tytuł głosowania
+      agenda_item: Numer głosowania
+      actions: Akcje
+      no_found: Brak głosowań
+      button:
+        show: Szczegóły
+        edit: Edycja
+    button:
+      new: Dodaj głosowanie
