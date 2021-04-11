@@ -21,7 +21,7 @@ class DeputiesController extends AbstractController
 {
     /**
      * @Route("/parser", name="deputies_parser", methods={"GET"})
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_SUPER_ADMIN")
      * @param DeputiesRepository $deputiesRepository
      * @param GovernmentPartiesRepository $governmentPartiesRepository
      * @return Response

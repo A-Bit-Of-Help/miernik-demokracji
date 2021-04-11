@@ -24,7 +24,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/registration", name="registration"
      * )
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @return RedirectResponse|Response
      */

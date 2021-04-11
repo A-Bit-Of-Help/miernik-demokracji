@@ -21,7 +21,7 @@ class GovernmentPartiesController extends AbstractController
 {
     /**
      * @param GovernmentPartiesRepository $governmentPartiesRepository
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_SUPER_ADMIN")
      * @Route("/parser", name="government_parties_parser", methods={"GET"})
      */
     public function parserGovernmentParties(GovernmentPartiesRepository $governmentPartiesRepository)

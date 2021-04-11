@@ -24,7 +24,7 @@ class VotesResultController extends AbstractController
 {
     /**
      * @Route("/parser", name="votes_result_parser", methods={"GET"})
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_SUPER_ADMIN")
      * @param VotesResultRepository $votesResultRepository
      * @param DeputiesRepository $deputiesRepository
      * @param VotesRepository $votesRepository

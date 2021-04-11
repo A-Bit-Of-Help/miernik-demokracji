@@ -23,7 +23,7 @@ class GovernmentMeetingsDateController extends AbstractController
 {
     /**
      * @Route("/parser", name="government_meetings_date_parser", methods={"GET"})
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_SUPER_ADMIN")
      * @param GovernmentMeetingsDateRepository $governmentMeetingsDateRepository
      * @param TimetableRepository $timetableRepository
      * @return Response
