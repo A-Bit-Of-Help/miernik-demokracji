@@ -4,35 +4,46 @@
 
 {% block body %}
     <h1>Deputies</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ deputy.id }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ deputy.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Secondname</th>
-                <td>{{ deputy.middlename }}</td>
-            </tr>
-            <tr>
-                <th>Surname</th>
-                <td>{{ deputy.surname }}</td>
-            </tr>
-            <tr>
-                <th>Link</th>
-                <td><a href="{{ deputy.link }}"><span class="badge badge-info">gov site</span></a></td>
-            </tr>
-            <tr>
-                <th>Photo</th>
-                <td><img src="{{ deputy.photo }}" /></td>
-            </tr>
-        </tbody>
-    </table>
+    <style>
+        .card {
+            max-width: 600px;
+            min-width: 380px;
+            padding: 6px 6px;
+        }
+    </style>
+    <div class="d-flex card-group justify-content-center">
+            <div class="card ">
+                <div class="card-horizontal">
+                    <div class="img-square-wrapper">
+                        <img class="" src="{{ deputy.photo }}" alt="Deputies photo">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ deputy.firstname }} {{ deputy.middlename }} {{ deputy.surname }}</h4>
+                        <p>{{ deputy.details }}</p>
+                    </div>
+                    <div class="img-square-wrapper">
+                        <img class="" src="{{ deputy.governmentParties.logo }}" alt="Government parties logo"
+                             height="53">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ deputy.link }}"><span class="badge badge-info">gov site</span></a>
+                    {% set no = 0 %}
+                    {% set ws = 0 %}
+                    {% for vote in deputy.votesResults %}
+                        {% if vote.voteResult == 'Nieobecny' %}
+                            {% set no = no+1 %}
+                        {% endif %}
+                        {% if vote.voteResult == 'Wstrzymał się' %}
+                            {% set ws = ws+1 %}
+                        {% endif %}
+                    {% endfor %}
+                    <span class="badge badge-primary">Ilość głosowań: {{ deputy.votesResults | length }}</span>
+                    <span class="badge badge-dark">Nieobecnych: {{ no }} ({{ (no / deputy.votesResults | length * 100) | round(2) }}%)</span>
+                    <span class="badge badge-danger">Wstrzymał się: {{ ws }} ({{ (ws / deputy.votesResults | length * 100) | round(2) }}%)</span>
+                </div>
+            </div>
+    </div>
 
     <a class="btn btn-primary" href="{{ path('deputies_index') }}">back to list</a>
 
