@@ -18,8 +18,10 @@
                         <p>{{ deputy.details }}</p>
                     </div>
                     <div class="img-square-wrapper">
+                        <a href="{{ path('government_parties_show', {'id': deputy.governmentParties.id}) }}">
                         <img class="" src="{{ deputy.governmentParties.logo }}" alt="Government parties logo"
                              height="53">
+                        </a>
                     </div>
                 </div>
                 <div class="card-footer">
