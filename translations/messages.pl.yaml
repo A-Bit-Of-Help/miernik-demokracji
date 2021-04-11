@@ -204,3 +204,7 @@ government_meetings_date:
     button:
       back: Wykaz dni posiedzeń sejmu
       edit: Edycja dnia
+votes:
+  delete:
+    confirm: Usunąć głosowanie?
+    button: Usuń
