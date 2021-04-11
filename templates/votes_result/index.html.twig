@@ -1,11 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}VotesResult index{% endblock %}
+{% block title %}{% trans %}votes_result.index.site.title{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>VotesResult index</h1>
-    <h4>Ilość oddanych głosów <span class="badge badge-warning">{{ pagination.getTotalItemCount }}</span></h4>
-    <a class="btn btn-success" href="{{ path('votes_result_new') }}">Create new</a>
+    <h1>{% trans %}votes_result.index.title{% endtrans %}</h1>
+    <h3>{{ vote.title }}</h3>
+
+    <h4>{% trans %}votes_result.index.votes_number{% endtrans %}
+        <span class="badge badge-warning">
+            {{ pagination.getTotalItemCount }}
+        </span>
+    </h4>
+
+    {% if is_granted("ROLE_ADMIN") %}
+        <a class="btn btn-success" href="{{ path('votes_result_new') }}">
+            {% trans %}votes_result.index.button.new{% endtrans %}
+        </a>
+    {% endif %}
+
     {% include('votes_result/list.html.twig') %}
     <div class="navigation">
         {{ knp_pagination_render(pagination) }}

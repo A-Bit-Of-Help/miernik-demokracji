@@ -261,3 +261,10 @@ votes_result:
     title: Edytuj oddany głos
     button:
       back: Wykaz wyników głosowań
+  index:
+    site:
+      title: Wyniki głosowania
+    title: Wyniki głosowania nad
+    votes_number: Ilość oddanych głosów
+    button:
+      new: Dodaj nowy głos

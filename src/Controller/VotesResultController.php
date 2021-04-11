@@ -98,19 +98,26 @@ class VotesResultController extends AbstractController
 
     /**
      * @Route("/vote/{id}", name="votes_result_vote", methods={"GET"})
+     * @param VotesRepository $votesRepository
      * @param VotesResultRepository $votesResultRepository
      * @param PaginatorInterface $paginator
      * @param Request $request
      * @param $id
      * @return Response
      */
-    public function index(VotesResultRepository $votesResultRepository, PaginatorInterface $paginator, Request $request, $id): Response
+    public function index(
+        VotesRepository $votesRepository,
+        VotesResultRepository $votesResultRepository,
+        PaginatorInterface $paginator,
+        Request $request, $id
+    ): Response
     {
         $votesResult = $votesResultRepository->findBy(['vote' => $id]);
-
+        $vote = $votesRepository->find($id);
         $pagination = $paginator->paginate($votesResult, $request->query->getInt('page', 1), 30);
         return $this->render('votes_result/index.html.twig', [
             'pagination' => $pagination,
+            'vote' => $vote,
         ]);
     }
 
