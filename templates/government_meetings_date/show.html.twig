@@ -8,7 +8,7 @@
     <h1>{% trans %}government_meetings_date.show.title{% endtrans %}
         : {{ government_meetings_date.date ? government_meetings_date.date|date('Y-m-d') : '' }}</h1>
 
-    
+
     <a class="btn btn-primary" href="{{ path('government_meetings_date_index') }}">
         {% trans %}government_meetings_date.show.button.back{% endtrans %}
     </a>
