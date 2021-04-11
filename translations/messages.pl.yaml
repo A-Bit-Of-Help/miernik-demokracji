@@ -208,3 +208,9 @@ votes:
   delete:
     confirm: Usunąć głosowanie?
     button: Usuń
+  edit:
+    site:
+      title: Edycja głosowanie
+    title: Edytuj głosowanie
+    button:
+      back: Wykaz głosowań
