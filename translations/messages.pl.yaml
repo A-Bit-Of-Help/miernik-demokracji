@@ -54,3 +54,9 @@ government_parties:
   delete:
     confirm: Jesteś pewien, że chcesz usunąć tą partię?
     button: Usuń
+  edit:
+    site:
+      title: Edycja partii
+    title: Edytuj partię
+    button:
+      back: Lista wszystkich partii
