@@ -140,3 +140,9 @@ timetable:
       show: Szczegóły
       edit: Edycja
       new: Dodaj posiedzenie
+  new:
+    site:
+      title: Tworzenie posedzenia sejmu
+    title: Dodaj nowe posiedzenie
+    button:
+      back: Wykaz posiedzeń rządu

@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Timetable{% endblock %}
+{% block title %}{% trans %}timetable.new.site.title{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Create new Timetable</h1>
+    <h1>{% trans %}timetable.new.title{% endtrans %}</h1>
 
     {{ include('timetable/_form.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('timetable_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('timetable_index') }}">
+        {% trans %}timetable.new.button.back{% endtrans %}
+    </a>
 {% endblock %}
