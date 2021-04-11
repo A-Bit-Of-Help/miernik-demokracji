@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Documents{% endblock %}
+{% block title %}{% trans %}documents.new.site.title{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Create new Documents</h1>
+    <h1>{% trans %}documents.new.title{% endtrans %}</h1>
 
     {{ include('documents/_form.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('documents_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('documents_index') }}">
+        {% trans %}documents.new.button.back{% endtrans %}
+    </a>
 {% endblock %}

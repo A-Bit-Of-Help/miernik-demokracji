@@ -309,3 +309,9 @@ documents:
         edit: Edycja
     button:
       new: Dodaj dokument
+  new:
+    site:
+      title: Nowy dokument
+    title: Dodawanie dokumentu
+    button:
+      back: Wykaz dokumentów
