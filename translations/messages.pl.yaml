@@ -293,3 +293,19 @@ documents:
     title: Edytuj dokument
     button:
       back: Wykaz dokumentów
+  index:
+    site:
+      title: Wykaz dokumentów
+    title: Lista dokumentów
+    table:
+      id: Indeks
+      number: Numer
+      path: Dokument
+      gov_path: Strona rządowa
+      actions: Akcje
+      no_found: Brak dokumentów
+      button:
+        show: Szczegóły
+        edit: Edycja
+    button:
+      new: Dodaj dokument
