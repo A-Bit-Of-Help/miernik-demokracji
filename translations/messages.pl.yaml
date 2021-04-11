@@ -232,3 +232,9 @@ votes:
         edit: Edycja
     button:
       new: Dodaj głosowanie
+  new:
+    site:
+      title: Tworzenie głosowania
+    title: Utwórz nowe głosowanie
+    button:
+      back: Wykaz głosowań
